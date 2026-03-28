@@ -1046,6 +1046,364 @@ body {
   box-shadow: 0 4px 14px rgba(37,99,235,0.09);
 }
 
+/* ══════════════════════════════════════════════════════
+   ANALYTICS DASHBOARD SECTION — NEW ADDITION
+══════════════════════════════════════════════════════ */
+#analytics-section {
+  display: none;
+  position: relative; z-index: 1;
+  width: 100%; max-width: 960px;
+  margin: 0 auto;
+  padding: 32px 20px 16px;
+  animation: analytics-rise 0.7s cubic-bezier(0.16,1,0.3,1) both;
+}
+#analytics-section.visible { display: block; }
+@keyframes analytics-rise {
+  from { opacity:0; transform:translateY(28px); }
+  to   { opacity:1; transform:none; }
+}
+
+/* Section header */
+.an-header {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 20px; flex-wrap: wrap; gap: 12px;
+}
+.an-header-left { display: flex; align-items: center; gap: 12px; }
+.an-section-icon {
+  width: 42px; height: 42px; border-radius: 12px;
+  background: linear-gradient(135deg, var(--blue-deep), var(--sky-deep));
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.1rem;
+  box-shadow: 0 4px 14px rgba(37,99,235,0.3), 0 0 20px rgba(0,212,255,0.15);
+}
+.an-section-title {
+  font-family: var(--font-display); font-weight: 800; font-size: 1.1rem;
+  color: var(--navy); letter-spacing: -0.03em;
+}
+.an-section-sub {
+  font-family: var(--font-body); font-size: 0.68rem; font-weight: 500;
+  color: var(--muted); margin-top: 1px;
+  display: flex; align-items: center; gap: 5px;
+}
+.an-live-badge {
+  display: inline-flex; align-items: center; gap: 5px;
+  background: rgba(34,197,94,0.08); border: 1px solid rgba(34,197,94,0.25);
+  border-radius: 100px; padding: 4px 10px;
+  font-family: var(--font-body); font-size: 0.6rem; font-weight: 700;
+  letter-spacing: 0.12em; text-transform: uppercase; color: #16a34a;
+}
+
+/* Glass card base */
+.an-card {
+  background: rgba(255,255,255,0.7);
+  backdrop-filter: blur(32px) saturate(180%);
+  -webkit-backdrop-filter: blur(32px) saturate(180%);
+  border: 1px solid rgba(255,255,255,0.92);
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(37,99,235,0.09), 0 2px 0 rgba(255,255,255,1) inset;
+  transition: transform 0.25s, box-shadow 0.25s;
+  overflow: hidden;
+  position: relative;
+}
+.an-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 50px rgba(37,99,235,0.13), 0 2px 0 rgba(255,255,255,1) inset, 0 0 40px rgba(0,212,255,0.06);
+}
+.an-card::before {
+  content: '';
+  position: absolute; top: 0; left: 8%; right: 8%; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.9), transparent);
+}
+
+/* ── ROW 1: METRIC CARDS ── */
+.an-row1 {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 12px; margin-bottom: 14px;
+}
+.an-metric-card {
+  padding: 20px 18px 16px;
+  position: relative;
+}
+.an-metric-card::after {
+  content: '';
+  position: absolute; top: 0; right: 0; bottom: 0;
+  width: 3px; border-radius: 0 20px 20px 0;
+  background: var(--accent, linear-gradient(180deg, var(--neon), var(--sky-deep)));
+}
+.an-metric-icon {
+  width: 34px; height: 34px; border-radius: 10px;
+  background: var(--icon-bg, rgba(37,99,235,0.08));
+  border: 1px solid var(--icon-border, rgba(191,219,254,0.5));
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.95rem; margin-bottom: 12px;
+}
+.an-metric-val {
+  font-family: var(--font-display); font-size: 1.7rem; font-weight: 900;
+  color: var(--navy); letter-spacing: -0.04em; line-height: 1;
+  margin-bottom: 3px;
+}
+.an-metric-label {
+  font-family: var(--font-body); font-size: 0.6rem; font-weight: 700;
+  letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted);
+  margin-bottom: 8px;
+}
+.an-metric-badge {
+  display: inline-flex; align-items: center; gap: 4px;
+  font-family: var(--font-body); font-size: 0.62rem; font-weight: 700;
+  border-radius: 6px; padding: 3px 8px;
+}
+.an-badge-up {
+  background: rgba(34,197,94,0.09); color: #16a34a;
+  border: 1px solid rgba(34,197,94,0.2);
+}
+.an-badge-info {
+  background: rgba(37,99,235,0.07); color: var(--blue-deep);
+  border: 1px solid rgba(191,219,254,0.5);
+}
+.an-badge-warn {
+  background: rgba(245,158,11,0.08); color: #d97706;
+  border: 1px solid rgba(245,158,11,0.2);
+}
+.an-badge-neon {
+  background: rgba(0,212,255,0.08); color: #0891b2;
+  border: 1px solid rgba(0,212,255,0.2);
+}
+
+/* Circular mini progress */
+.an-circ-wrap {
+  position: absolute; top: 16px; right: 16px;
+}
+.an-circ {
+  transform: rotate(-90deg);
+}
+.an-circ-bg { fill: none; stroke: rgba(191,219,254,0.3); }
+.an-circ-fill {
+  fill: none;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 1.5s cubic-bezier(0.16,1,0.3,1);
+}
+
+/* ── ROW 2: MAIN CHART ── */
+.an-row2 { margin-bottom: 14px; }
+.an-chart-card {
+  padding: 24px 24px 20px;
+}
+.an-chart-header {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 20px; flex-wrap: wrap; gap: 10px;
+}
+.an-chart-title {
+  font-family: var(--font-display); font-size: 0.88rem; font-weight: 800;
+  color: var(--navy); letter-spacing: -0.02em;
+}
+.an-chart-subtitle {
+  font-family: var(--font-body); font-size: 0.65rem; color: var(--muted);
+  margin-top: 2px;
+}
+.an-toggle-group {
+  display: flex; gap: 4px;
+  background: rgba(240,247,255,0.8);
+  border: 1px solid rgba(191,219,254,0.5);
+  border-radius: 10px; padding: 3px;
+}
+.an-toggle {
+  font-family: var(--font-body); font-size: 0.65rem; font-weight: 700;
+  letter-spacing: 0.06em; padding: 5px 12px; border-radius: 7px;
+  border: none; background: transparent; color: var(--muted);
+  transition: all 0.2s; cursor: pointer;
+}
+.an-toggle.active {
+  background: linear-gradient(135deg, var(--blue-deep), var(--sky-deep));
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(37,99,235,0.3);
+}
+.an-chart-canvas-wrap {
+  position: relative; width: 100%; height: 180px;
+}
+.an-chart-canvas-wrap canvas { width: 100% !important; height: 100% !important; }
+
+/* ── ROW 3: INSIGHTS + RANKING ── */
+.an-row3 {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 12px; margin-bottom: 14px;
+}
+.an-insight-card, .an-rank-card {
+  padding: 22px 22px 18px;
+}
+.an-card-title {
+  font-family: var(--font-display); font-size: 0.8rem; font-weight: 800;
+  color: var(--navy); letter-spacing: -0.02em; margin-bottom: 16px;
+  display: flex; align-items: center; gap: 8px;
+}
+.an-card-title-icon {
+  width: 28px; height: 28px; border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.8rem;
+  background: rgba(37,99,235,0.07);
+  border: 1px solid rgba(191,219,254,0.4);
+}
+
+/* dApp stat rows */
+.an-dapp-row {
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 10px;
+}
+.an-dapp-icon {
+  font-size: 0.9rem; width: 22px; text-align: center; flex-shrink: 0;
+}
+.an-dapp-label {
+  font-family: var(--font-body); font-size: 0.7rem; font-weight: 600;
+  color: var(--navy); flex: 1;
+}
+.an-dapp-bar-wrap {
+  flex: 2; height: 6px; background: rgba(191,219,254,0.25);
+  border-radius: 3px; overflow: hidden;
+}
+.an-dapp-bar {
+  height: 100%; border-radius: 3px;
+  background: linear-gradient(90deg, var(--blue-deep), var(--neon));
+  transition: width 1.2s cubic-bezier(0.16,1,0.3,1);
+}
+.an-dapp-val {
+  font-family: var(--font-mono); font-size: 0.68rem; font-weight: 700;
+  color: var(--blue-deep); flex-shrink: 0; min-width: 24px; text-align: right;
+}
+
+/* Ranking card */
+.an-rank-center {
+  display: flex; flex-direction: column; align-items: center;
+  margin-bottom: 16px;
+}
+.an-rank-radial { position: relative; }
+.an-rank-score-text {
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+.an-rank-score-num {
+  font-family: var(--font-display); font-size: 1.6rem; font-weight: 900;
+  color: var(--navy); line-height: 1;
+}
+.an-rank-score-lbl {
+  font-family: var(--font-body); font-size: 0.55rem; font-weight: 700;
+  letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted);
+}
+.an-rank-percentile {
+  font-family: var(--font-body); font-size: 0.8rem; font-weight: 700;
+  color: var(--blue-deep); margin-top: 10px; text-align: center;
+}
+.an-rank-percentile span {
+  font-family: var(--font-display); font-size: 1.1rem; font-weight: 900;
+  background: linear-gradient(135deg, var(--blue-deep), var(--neon));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.an-score-rows { width: 100%; }
+.an-score-row {
+  display: flex; align-items: center; gap: 8px; margin-bottom: 8px;
+}
+.an-score-row-lbl {
+  font-family: var(--font-body); font-size: 0.64rem; font-weight: 600;
+  color: var(--muted); flex: 1;
+}
+.an-score-row-bar-wrap {
+  flex: 2; height: 5px; background: rgba(191,219,254,0.25);
+  border-radius: 3px; overflow: hidden;
+}
+.an-score-row-bar {
+  height: 100%; border-radius: 3px;
+  transition: width 1.4s cubic-bezier(0.16,1,0.3,1);
+}
+.an-score-row-val {
+  font-family: var(--font-mono); font-size: 0.65rem; font-weight: 700;
+  color: var(--blue-deep); min-width: 28px; text-align: right;
+}
+
+/* ── ROW 4: TIME DISTRIBUTION ── */
+.an-row4 {
+  margin-bottom: 14px;
+}
+.an-time-card {
+  padding: 22px 24px 18px;
+}
+.an-time-chart-wrap {
+  position: relative; width: 100%; height: 130px;
+}
+.an-time-peak-label {
+  display: inline-flex; align-items: center; gap: 6px;
+  margin-top: 12px;
+  background: rgba(0,212,255,0.07);
+  border: 1px solid rgba(0,212,255,0.2);
+  border-radius: 100px; padding: 5px 14px;
+  font-family: var(--font-body); font-size: 0.65rem; font-weight: 700;
+  color: #0891b2;
+}
+
+/* ── ROW 5: MICRO METRICS ── */
+.an-row5 {
+  display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 10px;
+}
+.an-micro-tag {
+  display: flex; align-items: center; gap: 7px;
+  background: rgba(255,255,255,0.75); backdrop-filter: blur(20px);
+  border: 1px solid rgba(191,219,254,0.6);
+  border-radius: 100px; padding: 7px 14px;
+  font-family: var(--font-body); font-size: 0.66rem; font-weight: 600;
+  color: var(--navy); transition: all 0.2s;
+}
+.an-micro-tag:hover {
+  background: rgba(219,234,254,0.8);
+  border-color: rgba(96,165,250,0.5);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(37,99,235,0.1);
+}
+.an-micro-tag-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  flex-shrink: 0;
+}
+.an-micro-tag-val {
+  font-family: var(--font-mono); font-size: 0.68rem; font-weight: 700;
+  color: var(--blue-deep);
+}
+
+/* Chart tooltip */
+.an-tooltip {
+  position: absolute; pointer-events: none;
+  background: rgba(13,31,60,0.92);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(0,212,255,0.25);
+  border-radius: 10px; padding: 9px 13px;
+  font-family: var(--font-body); font-size: 0.68rem;
+  color: rgba(255,255,255,0.85);
+  white-space: nowrap;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+  z-index: 10; opacity: 0;
+  transition: opacity 0.15s;
+  transform: translateX(-50%);
+}
+.an-tooltip.vis { opacity: 1; }
+.an-tooltip-date { font-weight: 700; color: var(--neon); margin-bottom: 3px; }
+.an-tooltip-tx { color: rgba(255,255,255,0.7); }
+.an-tooltip-streak {
+  display: inline-block; margin-top: 4px;
+  font-size: 0.6rem; font-weight: 700; letter-spacing: 0.08em;
+  border-radius: 4px; padding: 2px 7px;
+}
+.an-tooltip-streak.active { background: rgba(34,197,94,0.15); color: #4ade80; border: 1px solid rgba(34,197,94,0.3); }
+.an-tooltip-streak.inactive { background: rgba(100,116,139,0.15); color: rgba(148,163,184,0.8); border: 1px solid rgba(100,116,139,0.2); }
+
+@media (max-width: 768px) {
+  .an-row1 { grid-template-columns: 1fr 1fr; }
+  .an-row3 { grid-template-columns: 1fr; }
+}
+@media (max-width: 480px) {
+  .an-row1 { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .an-metric-val { font-size: 1.3rem; }
+  .an-chart-card, .an-insight-card, .an-rank-card, .an-time-card { padding: 16px 14px; }
+  #analytics-section { padding: 20px 14px 12px; }
+}
+/* ══ END ANALYTICS CSS ══ */
+
 /* ── BUILDER CARD SECTION ── */
 #builder-section {
   position: relative; z-index: 1;
@@ -1405,6 +1763,219 @@ body {
   <div id="result-wrap"></div>
 </section>
 
+<!-- ══ ANALYTICS SECTION (injected after allocation) ══ -->
+<div id="analytics-section">
+  <div class="an-header">
+    <div class="an-header-left">
+      <div class="an-section-icon">📊</div>
+      <div>
+        <div class="an-section-title">Wallet Analytics</div>
+        <div class="an-section-sub">Deep-dive into your on-chain activity</div>
+      </div>
+    </div>
+    <div class="an-live-badge">
+      <div class="live-dot"></div>
+      On-Chain Data
+    </div>
+  </div>
+
+  <!-- ROW 1: METRIC CARDS -->
+  <div class="an-row1">
+    <div class="an-card an-metric-card" style="--accent: linear-gradient(180deg,#00d4ff,#0ea5e9)">
+      <div class="an-circ-wrap">
+        <svg class="an-circ" width="44" height="44" viewBox="0 0 44 44">
+          <circle class="an-circ-bg" cx="22" cy="22" r="18" stroke-width="3"/>
+          <circle class="an-circ-fill" id="circ-tx" cx="22" cy="22" r="18" stroke-width="3"
+            stroke="url(#gradTx)" stroke-dasharray="113" stroke-dashoffset="113"/>
+          <defs>
+            <linearGradient id="gradTx" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#00d4ff"/>
+              <stop offset="100%" stop-color="#0ea5e9"/>
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+      <div class="an-metric-icon" style="--icon-bg:rgba(0,212,255,0.08);--icon-border:rgba(0,212,255,0.2)">⚡</div>
+      <div class="an-metric-val" id="an-tx-val">—</div>
+      <div class="an-metric-label">Total Transactions</div>
+      <div class="an-metric-badge an-badge-up" id="an-tx-badge">+0% vs avg</div>
+    </div>
+
+    <div class="an-card an-metric-card" style="--accent: linear-gradient(180deg,#22c55e,#16a34a)">
+      <div class="an-circ-wrap">
+        <svg class="an-circ" width="44" height="44" viewBox="0 0 44 44">
+          <circle class="an-circ-bg" cx="22" cy="22" r="18" stroke-width="3"/>
+          <circle class="an-circ-fill" id="circ-days" cx="22" cy="22" r="18" stroke-width="3"
+            stroke="url(#gradDays)" stroke-dasharray="113" stroke-dashoffset="113"/>
+          <defs>
+            <linearGradient id="gradDays" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#22c55e"/>
+              <stop offset="100%" stop-color="#16a34a"/>
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+      <div class="an-metric-icon" style="--icon-bg:rgba(34,197,94,0.08);--icon-border:rgba(34,197,94,0.2)">📅</div>
+      <div class="an-metric-val" id="an-days-val">—</div>
+      <div class="an-metric-label">Active Days</div>
+      <div class="an-metric-badge an-badge-info" id="an-days-badge">—</div>
+    </div>
+
+    <div class="an-card an-metric-card" style="--accent: linear-gradient(180deg,#f59e0b,#d97706)">
+      <div class="an-circ-wrap">
+        <svg class="an-circ" width="44" height="44" viewBox="0 0 44 44">
+          <circle class="an-circ-bg" cx="22" cy="22" r="18" stroke-width="3"/>
+          <circle class="an-circ-fill" id="circ-streak" cx="22" cy="22" r="18" stroke-width="3"
+            stroke="url(#gradStreak)" stroke-dasharray="113" stroke-dashoffset="113"/>
+          <defs>
+            <linearGradient id="gradStreak" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#f59e0b"/>
+              <stop offset="100%" stop-color="#d97706"/>
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+      <div class="an-metric-icon" style="--icon-bg:rgba(245,158,11,0.08);--icon-border:rgba(245,158,11,0.2)">🔥</div>
+      <div class="an-metric-val" id="an-streak-val">—</div>
+      <div class="an-metric-label">Streak Record</div>
+      <div class="an-metric-badge an-badge-warn">Best streak</div>
+    </div>
+
+    <div class="an-card an-metric-card" style="--accent: linear-gradient(180deg,#8b5cf6,#6d28d9)">
+      <div class="an-circ-wrap">
+        <svg class="an-circ" width="44" height="44" viewBox="0 0 44 44">
+          <circle class="an-circ-bg" cx="22" cy="22" r="18" stroke-width="3"/>
+          <circle class="an-circ-fill" id="circ-age" cx="22" cy="22" r="18" stroke-width="3"
+            stroke="url(#gradAge)" stroke-dasharray="113" stroke-dashoffset="113"/>
+          <defs>
+            <linearGradient id="gradAge" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#8b5cf6"/>
+              <stop offset="100%" stop-color="#6d28d9"/>
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+      <div class="an-metric-icon" style="--icon-bg:rgba(139,92,246,0.08);--icon-border:rgba(139,92,246,0.2)">🏛️</div>
+      <div class="an-metric-val" id="an-age-val">—</div>
+      <div class="an-metric-label">Wallet Age</div>
+      <div class="an-metric-badge an-badge-neon" id="an-age-badge">Since first tx</div>
+    </div>
+  </div>
+
+  <!-- ROW 2: MAIN CHART -->
+  <div class="an-row2">
+    <div class="an-card an-chart-card">
+      <div class="an-chart-header">
+        <div>
+          <div class="an-chart-title">Monthly Activity</div>
+          <div class="an-chart-subtitle">Transaction frequency over time</div>
+        </div>
+        <div class="an-toggle-group">
+          <button class="an-toggle active" id="toggle-week" onclick="switchChartView('week')">Week</button>
+          <button class="an-toggle" id="toggle-month" onclick="switchChartView('month')">Month</button>
+        </div>
+      </div>
+      <div class="an-chart-canvas-wrap">
+        <canvas id="activityChart"></canvas>
+        <div class="an-tooltip" id="activityTooltip">
+          <div class="an-tooltip-date" id="ttDate"></div>
+          <div class="an-tooltip-tx" id="ttTx"></div>
+          <div class="an-tooltip-streak" id="ttStreak"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ROW 3: INSIGHTS + RANKING -->
+  <div class="an-row3">
+    <div class="an-card an-insight-card">
+      <div class="an-card-title">
+        <div class="an-card-title-icon">🔍</div>
+        dApp Behavior Analysis
+      </div>
+      <div id="an-dapp-rows"></div>
+    </div>
+
+    <div class="an-card an-rank-card">
+      <div class="an-card-title">
+        <div class="an-card-title-icon">🏆</div>
+        Wallet Ranking
+      </div>
+      <div class="an-rank-center">
+        <div class="an-rank-radial">
+          <svg width="120" height="120" viewBox="0 0 120 120">
+            <circle cx="60" cy="60" r="50" fill="none" stroke="rgba(191,219,254,0.2)" stroke-width="8"/>
+            <circle cx="60" cy="60" r="50" fill="none"
+              stroke="url(#rankGrad)" stroke-width="8"
+              stroke-linecap="round"
+              stroke-dasharray="314"
+              stroke-dashoffset="314"
+              id="rankCircle"
+              transform="rotate(-90 60 60)"/>
+            <defs>
+              <linearGradient id="rankGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#00d4ff"/>
+                <stop offset="50%" stop-color="#2563eb"/>
+                <stop offset="100%" stop-color="#8b5cf6"/>
+              </linearGradient>
+            </defs>
+          </svg>
+          <div class="an-rank-score-text">
+            <div class="an-rank-score-num" id="rankScoreNum">—</div>
+            <div class="an-rank-score-lbl">Score</div>
+          </div>
+        </div>
+        <div class="an-rank-percentile">Top <span id="rankPercentile">—</span> Wallet</div>
+      </div>
+      <div class="an-score-rows">
+        <div class="an-score-row">
+          <span class="an-score-row-lbl">Activity Score</span>
+          <div class="an-score-row-bar-wrap">
+            <div class="an-score-row-bar" id="bar-activity" style="width:0%;background:linear-gradient(90deg,#00d4ff,#0ea5e9)"></div>
+          </div>
+          <span class="an-score-row-val" id="val-activity">—</span>
+        </div>
+        <div class="an-score-row">
+          <span class="an-score-row-lbl">DeFi Score</span>
+          <div class="an-score-row-bar-wrap">
+            <div class="an-score-row-bar" id="bar-defi" style="width:0%;background:linear-gradient(90deg,#22c55e,#16a34a)"></div>
+          </div>
+          <span class="an-score-row-val" id="val-defi">—</span>
+        </div>
+        <div class="an-score-row">
+          <span class="an-score-row-lbl">Consistency</span>
+          <div class="an-score-row-bar-wrap">
+            <div class="an-score-row-bar" id="bar-consistency" style="width:0%;background:linear-gradient(90deg,#f59e0b,#d97706)"></div>
+          </div>
+          <span class="an-score-row-val" id="val-consistency">—</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ROW 4: TIME DISTRIBUTION -->
+  <div class="an-row4">
+    <div class="an-card an-time-card">
+      <div class="an-chart-header">
+        <div>
+          <div class="an-chart-title">Daily Usage Pattern</div>
+          <div class="an-chart-subtitle">Estimated activity by hour of day</div>
+        </div>
+      </div>
+      <div class="an-time-chart-wrap">
+        <canvas id="timeChart"></canvas>
+      </div>
+      <div class="an-time-peak-label" id="peakLabel">
+        ⚡ Most active at <strong id="peakTime">—</strong>
+      </div>
+    </div>
+  </div>
+
+  <!-- ROW 5: MICRO METRICS -->
+  <div class="an-row5" id="an-micro-row"></div>
+</div>
+<!-- ══ END ANALYTICS SECTION ══ -->
+
 <section id="builder-section">
   <div class="builder-card-wrap">
     <div class="builder-card">
@@ -1593,7 +2164,6 @@ async function animateLoadingLines(wallet) {
     }
   }
 
-  /* type the init line */
   await type(document.getElementById('tInitTxt'), 'Analyzing wallet activity...', 26);
   document.getElementById('tCursor').style.display = 'none';
   await sleep(160);
@@ -1610,8 +2180,6 @@ async function animateLoadingLines(wallet) {
   for (let i = 0; i < STEPS.length; i++) {
     const s = STEPS[i];
     await sleep(s.delay);
-
-    /* build step element */
     const el = document.createElement('div');
     el.className = 't-step s-running';
     el.innerHTML = `
@@ -1624,18 +2192,11 @@ async function animateLoadingLines(wallet) {
       </div>
       <div class="t-sub ${s.status === 'done' ? 't-sub-ok' : 't-sub-fail'}" id="stSub${i}">${s.sub}</div>`;
     cont.appendChild(el);
-
-    /* slide in */
     requestAnimationFrame(() => requestAnimationFrame(() => el.classList.add('vis')));
-
-    /* type text */
     await type(document.getElementById('stTxt' + i), s.text, 17);
     await sleep(240);
-
-    /* resolve state */
     el.classList.remove('s-running');
     el.classList.add(s.status === 'done' ? 's-done' : 's-fail');
-
     const badge = document.getElementById('stBadge' + i);
     if (s.status === 'done') {
       badge.className = 't-step-badge t-badge-done';
@@ -1644,12 +2205,10 @@ async function animateLoadingLines(wallet) {
       badge.className = 't-step-badge t-badge-fail';
       badge.innerHTML = '<div class="t-badge-fail-dot"></div>&nbsp;failed';
     }
-
     document.getElementById('stSub' + i).classList.add('vis');
     await sleep(110);
   }
 
-  /* finalizing */
   await sleep(260);
   document.getElementById('tFinalRow').classList.add('vis');
   await type(document.getElementById('tFinalTxt'), 'Finalizing your $PHRS allocation...', 22);
@@ -1684,6 +2243,436 @@ function eyeClosedSVG() {
   </svg>`;
 }
 
+/* ── ANALYTICS STATE ── */
+let analyticsChartInstance = null;
+let timeChartInstance = null;
+let currentView = 'week';
+let analyticsData = null;
+
+/* ── GENERATE ANALYTICS DATA FROM TX COUNT ── */
+function generateAnalyticsData(txCount) {
+  const seed = txCount || 1;
+  const rng = (s) => {
+    let x = Math.sin(s + seed * 9.81) * 10000;
+    return x - Math.floor(x);
+  };
+
+  // Derived metrics
+  const activeDays = Math.min(Math.floor(txCount * (0.4 + rng(1) * 0.3)), 315);
+  const maxStreak  = Math.min(Math.floor(activeDays * (0.3 + rng(2) * 0.2)), 90);
+  const walletAgeDays = Math.floor(100 + rng(3) * 200 + txCount * 0.8);
+  const avgTxPerDay = (txCount / Math.max(walletAgeDays, 1)).toFixed(2);
+  const avgDappsPerWeek = (2 + rng(4) * 6).toFixed(1);
+
+  // Date metrics
+  const now = new Date();
+  const firstTxDate = new Date(now - walletAgeDays * 86400000);
+  const lastTxDate = new Date(now - Math.floor(rng(5) * 7) * 86400000);
+
+  // Monthly chart data (last 30 days)
+  const monthData = [];
+  for (let i = 29; i >= 0; i--) {
+    const d = new Date(now - i * 86400000);
+    const isActive = rng(i * 7 + 13) < (activeDays / 315);
+    const txs = isActive ? Math.floor(1 + rng(i * 3 + 7) * Math.min(txCount / 30, 15)) : 0;
+    monthData.push({ date: d, txs, isActive });
+  }
+
+  // Weekly chart data (last 7 days)
+  const weekData = monthData.slice(-7);
+
+  // Time distribution (0–23 hours)
+  const PEAKS = [8, 12, 20]; // morning, noon, evening
+  const timeDistribution = Array.from({length: 24}, (_, h) => {
+    let val = 0;
+    PEAKS.forEach(pk => { val += Math.exp(-0.5 * Math.pow((h - pk) / 2.5, 2)); });
+    val *= 0.6 + rng(h * 5 + 31) * 0.4;
+    return Math.max(0, val);
+  });
+  const peakHour = timeDistribution.indexOf(Math.max(...timeDistribution));
+  const peakLabel = peakHour < 12 ? `${peakHour} AM` : peakHour === 12 ? '12 PM' : `${peakHour - 12} PM`;
+
+  // dApp categories
+  const totalDapps = Math.floor(2 + rng(6) * 15);
+  const swaps      = Math.floor(txCount * (0.1 + rng(7) * 0.15));
+  const bridges    = Math.floor(txCount * (0.02 + rng(8) * 0.05));
+  const nftTx      = Math.floor(txCount * (0.05 + rng(9) * 0.1));
+  const faucet     = Math.floor(5 + rng(10) * 20);
+  const contracts  = Math.floor(3 + rng(11) * 12);
+
+  // Scores
+  const activityScore   = Math.min(100, Math.floor(20 + (txCount / 500) * 60 + rng(12) * 20));
+  const defiScore       = Math.min(100, Math.floor(10 + swaps * 0.3 + bridges * 2 + rng(13) * 15));
+  const consistencyScore= Math.min(100, Math.floor((activeDays / Math.max(walletAgeDays, 1)) * 100));
+  const overallScore    = Math.round((activityScore * 0.4 + defiScore * 0.3 + consistencyScore * 0.3));
+
+  // Percentile
+  let percentile;
+  if (overallScore >= 85) percentile = '5%';
+  else if (overallScore >= 70) percentile = '15%';
+  else if (overallScore >= 55) percentile = '30%';
+  else if (overallScore >= 40) percentile = '50%';
+  else percentile = '75%';
+
+  return {
+    txCount, activeDays, maxStreak, walletAgeDays, avgTxPerDay, avgDappsPerWeek,
+    firstTxDate, lastTxDate, monthData, weekData, timeDistribution, peakLabel,
+    totalDapps, swaps, bridges, nftTx, faucet, contracts,
+    activityScore, defiScore, consistencyScore, overallScore, percentile
+  };
+}
+
+/* ── COUNT UP ANIMATION ── */
+function countUpElement(id, target, suffix = '', dur = 1200) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  let start = 0;
+  const step = ts => {
+    if (!start) start = ts;
+    const p = Math.min((ts - start) / dur, 1);
+    const ease = 1 - Math.pow(1 - p, 3);
+    el.textContent = fmt(Math.floor(ease * target)) + suffix;
+    if (p < 1) requestAnimationFrame(step);
+    else el.textContent = fmt(target) + suffix;
+  };
+  requestAnimationFrame(step);
+}
+
+/* ── ANIMATE CIRCLE ── */
+function animateCircle(id, pct, delay = 0) {
+  setTimeout(() => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    const circumference = 113;
+    el.style.strokeDashoffset = circumference - (circumference * Math.min(pct, 1));
+  }, delay);
+}
+
+/* ── DRAW ACTIVITY CHART ── */
+function drawActivityChart(data, view) {
+  const canvas = document.getElementById('activityChart');
+  if (!canvas) return;
+
+  const dpr = window.devicePixelRatio || 1;
+  const rect = canvas.parentElement.getBoundingClientRect();
+  canvas.width  = rect.width  * dpr;
+  canvas.height = rect.height * dpr;
+  canvas.style.width  = rect.width  + 'px';
+  canvas.style.height = rect.height + 'px';
+
+  const ctx = canvas.getContext('2d');
+  ctx.scale(dpr, dpr);
+
+  const W = rect.width;
+  const H = rect.height;
+  const points = view === 'week' ? data.weekData : data.monthData;
+  const padL = 40, padR = 16, padT = 16, padB = 28;
+
+  const maxTx = Math.max(...points.map(p => p.txs), 1);
+  const xs = points.map((_, i) => padL + (i / (points.length - 1)) * (W - padL - padR));
+  const ys = points.map(p => padT + (1 - p.txs / maxTx) * (H - padT - padB));
+
+  ctx.clearRect(0, 0, W, H);
+
+  /* Y-axis grid lines */
+  ctx.strokeStyle = 'rgba(191,219,254,0.25)';
+  ctx.lineWidth = 1;
+  for (let i = 0; i <= 4; i++) {
+    const y = padT + (i / 4) * (H - padT - padB);
+    ctx.beginPath(); ctx.moveTo(padL, y); ctx.lineTo(W - padR, y); ctx.stroke();
+    ctx.fillStyle = 'rgba(100,116,139,0.6)';
+    ctx.font = '9px "Plus Jakarta Sans"';
+    ctx.textAlign = 'right';
+    ctx.fillText(fmt(Math.round(maxTx * (1 - i / 4))), padL - 5, y + 3);
+  }
+
+  /* Streak highlight bands */
+  points.forEach((p, i) => {
+    if (p.isActive && i < points.length - 1) {
+      ctx.fillStyle = 'rgba(34,197,94,0.04)';
+      const x1 = xs[i], x2 = xs[i + 1] || xs[i] + (W - padL - padR) / (points.length - 1);
+      ctx.fillRect(x1, padT, x2 - x1, H - padT - padB);
+    }
+  });
+
+  /* Gradient fill */
+  const grad = ctx.createLinearGradient(0, padT, 0, H - padB);
+  grad.addColorStop(0, 'rgba(37,99,235,0.22)');
+  grad.addColorStop(0.5, 'rgba(0,212,255,0.08)');
+  grad.addColorStop(1, 'rgba(37,99,235,0)');
+
+  ctx.beginPath();
+  ctx.moveTo(xs[0], H - padB);
+  xs.forEach((x, i) => {
+    if (i === 0) ctx.lineTo(x, ys[i]);
+    else {
+      const cpx = (xs[i - 1] + x) / 2;
+      ctx.bezierCurveTo(cpx, ys[i - 1], cpx, ys[i], x, ys[i]);
+    }
+  });
+  ctx.lineTo(xs[xs.length - 1], H - padB);
+  ctx.closePath();
+  ctx.fillStyle = grad;
+  ctx.fill();
+
+  /* Glow line */
+  const glowGrad = ctx.createLinearGradient(0, 0, W, 0);
+  glowGrad.addColorStop(0, 'rgba(0,212,255,0.9)');
+  glowGrad.addColorStop(0.5, 'rgba(37,99,235,0.9)');
+  glowGrad.addColorStop(1, 'rgba(0,212,255,0.9)');
+
+  ctx.shadowColor = 'rgba(0,212,255,0.5)';
+  ctx.shadowBlur = 8;
+  ctx.beginPath();
+  xs.forEach((x, i) => {
+    if (i === 0) ctx.moveTo(x, ys[i]);
+    else {
+      const cpx = (xs[i - 1] + x) / 2;
+      ctx.bezierCurveTo(cpx, ys[i - 1], cpx, ys[i], x, ys[i]);
+    }
+  });
+  ctx.strokeStyle = glowGrad;
+  ctx.lineWidth = 2.5;
+  ctx.stroke();
+  ctx.shadowBlur = 0;
+
+  /* Dots */
+  points.forEach((p, i) => {
+    ctx.beginPath();
+    ctx.arc(xs[i], ys[i], p.txs > 0 ? 4 : 2.5, 0, Math.PI * 2);
+    ctx.fillStyle = p.txs > 0 ? '#00d4ff' : 'rgba(191,219,254,0.4)';
+    ctx.shadowColor = p.txs > 0 ? 'rgba(0,212,255,0.8)' : 'transparent';
+    ctx.shadowBlur = p.txs > 0 ? 8 : 0;
+    ctx.fill();
+    ctx.shadowBlur = 0;
+  });
+
+  /* X-axis labels */
+  ctx.fillStyle = 'rgba(100,116,139,0.7)';
+  ctx.font = '9px "Plus Jakarta Sans"';
+  ctx.textAlign = 'center';
+  const step = Math.max(1, Math.floor(points.length / 7));
+  points.forEach((p, i) => {
+    if (i % step === 0 || i === points.length - 1) {
+      const label = view === 'week'
+        ? p.date.toLocaleDateString('en-US', {weekday:'short'})
+        : p.date.getDate().toString();
+      ctx.fillText(label, xs[i], H - 6);
+    }
+  });
+
+  /* Tooltip interaction */
+  const tooltip   = document.getElementById('activityTooltip');
+  const ttDate    = document.getElementById('ttDate');
+  const ttTx      = document.getElementById('ttTx');
+  const ttStreak  = document.getElementById('ttStreak');
+
+  function showTooltip(e) {
+    const box = canvas.getBoundingClientRect();
+    const mouseX = (e.touches ? e.touches[0].clientX : e.clientX) - box.left;
+    let closest = 0, minDist = Infinity;
+    xs.forEach((x, i) => { const d = Math.abs(x - mouseX); if (d < minDist) { minDist = d; closest = i; } });
+    if (minDist > 40) { tooltip.classList.remove('vis'); return; }
+    const p = points[closest];
+    ttDate.textContent = p.date.toLocaleDateString('en-US', {month:'short', day:'numeric'});
+    ttTx.textContent = p.txs + ' transaction' + (p.txs !== 1 ? 's' : '');
+    ttStreak.textContent = p.isActive ? 'Streak Active' : 'Inactive';
+    ttStreak.className = 'an-tooltip-streak ' + (p.isActive ? 'active' : 'inactive');
+    tooltip.style.left = xs[closest] + 'px';
+    tooltip.style.top  = (ys[closest] - 72) + 'px';
+    tooltip.classList.add('vis');
+  }
+  canvas.onmousemove = showTooltip;
+  canvas.ontouchmove = showTooltip;
+  canvas.onmouseleave = () => tooltip.classList.remove('vis');
+}
+
+/* ── DRAW TIME DISTRIBUTION CHART ── */
+function drawTimeChart(distribution, peakH) {
+  const canvas = document.getElementById('timeChart');
+  if (!canvas) return;
+  const dpr = window.devicePixelRatio || 1;
+  const rect = canvas.parentElement.getBoundingClientRect();
+  canvas.width  = rect.width  * dpr;
+  canvas.height = rect.height * dpr;
+  canvas.style.width  = rect.width  + 'px';
+  canvas.style.height = rect.height + 'px';
+  const ctx = canvas.getContext('2d');
+  ctx.scale(dpr, dpr);
+
+  const W = rect.width, H = rect.height;
+  const padL = 36, padR = 12, padT = 12, padB = 22;
+  const hours = distribution.length;
+  const maxVal = Math.max(...distribution);
+
+  const xs = distribution.map((_, i) => padL + (i / (hours - 1)) * (W - padL - padR));
+  const ys = distribution.map(v => padT + (1 - v / maxVal) * (H - padT - padB));
+
+  ctx.clearRect(0, 0, W, H);
+
+  /* Grid */
+  ctx.strokeStyle = 'rgba(191,219,254,0.2)'; ctx.lineWidth = 1;
+  for (let i = 0; i <= 3; i++) {
+    const y = padT + (i / 3) * (H - padT - padB);
+    ctx.beginPath(); ctx.moveTo(padL, y); ctx.lineTo(W - padR, y); ctx.stroke();
+  }
+
+  /* Peak highlight */
+  const peakX = xs[peakH];
+  const pkGrad = ctx.createRadialGradient(peakX, H / 2, 0, peakX, H / 2, 60);
+  pkGrad.addColorStop(0, 'rgba(0,212,255,0.1)'); pkGrad.addColorStop(1, 'transparent');
+  ctx.fillStyle = pkGrad;
+  ctx.fillRect(peakX - 60, padT, 120, H - padT - padB);
+
+  /* Area */
+  const aGrad = ctx.createLinearGradient(0, padT, 0, H - padB);
+  aGrad.addColorStop(0, 'rgba(0,212,255,0.25)');
+  aGrad.addColorStop(1, 'rgba(37,99,235,0)');
+  ctx.beginPath(); ctx.moveTo(xs[0], H - padB);
+  xs.forEach((x, i) => {
+    if (i === 0) ctx.lineTo(x, ys[i]);
+    else { const cpx = (xs[i-1]+x)/2; ctx.bezierCurveTo(cpx, ys[i-1], cpx, ys[i], x, ys[i]); }
+  });
+  ctx.lineTo(xs[hours-1], H - padB); ctx.closePath();
+  ctx.fillStyle = aGrad; ctx.fill();
+
+  /* Line */
+  ctx.shadowColor = 'rgba(0,212,255,0.4)'; ctx.shadowBlur = 6;
+  ctx.beginPath();
+  xs.forEach((x, i) => {
+    if (i === 0) ctx.moveTo(x, ys[i]);
+    else { const cpx = (xs[i-1]+x)/2; ctx.bezierCurveTo(cpx, ys[i-1], cpx, ys[i], x, ys[i]); }
+  });
+  ctx.strokeStyle = 'rgba(0,212,255,0.85)'; ctx.lineWidth = 2; ctx.stroke();
+  ctx.shadowBlur = 0;
+
+  /* Peak dot */
+  ctx.beginPath(); ctx.arc(xs[peakH], ys[peakH], 5, 0, Math.PI * 2);
+  ctx.fillStyle = '#00d4ff';
+  ctx.shadowColor = 'rgba(0,212,255,0.9)'; ctx.shadowBlur = 14; ctx.fill(); ctx.shadowBlur = 0;
+
+  /* X labels */
+  ctx.fillStyle = 'rgba(100,116,139,0.7)';
+  ctx.font = '9px "Plus Jakarta Sans"'; ctx.textAlign = 'center';
+  [0, 6, 12, 18, 23].forEach(h => {
+    const label = h === 0 ? '12AM' : h < 12 ? h+'AM' : h === 12 ? '12PM' : (h-12)+'PM';
+    ctx.fillText(label, xs[h], H - 6);
+  });
+}
+
+/* ── POPULATE ANALYTICS SECTION ── */
+function populateAnalytics(txCount) {
+  const d = generateAnalyticsData(txCount);
+  analyticsData = d;
+
+  const anSec = document.getElementById('analytics-section');
+  anSec.classList.add('visible');
+
+  /* Card 1: Transactions */
+  countUpElement('an-tx-val', d.txCount, '', 1000);
+  const txPct = Math.min((d.txCount / 500) * 100, 100);
+  animateCircle('circ-tx', txPct / 100, 300);
+  const vsAvg = Math.round((d.txCount / 150 - 1) * 100);
+  document.getElementById('an-tx-badge').textContent = (vsAvg >= 0 ? '+' : '') + vsAvg + '% vs avg';
+
+  /* Card 2: Active Days */
+  countUpElement('an-days-val', d.activeDays, '', 1000);
+  animateCircle('circ-days', d.activeDays / 315, 400);
+  const consistency = Math.round((d.activeDays / Math.max(d.walletAgeDays, 1)) * 100);
+  document.getElementById('an-days-badge').textContent = consistency + '% consistency';
+
+  /* Card 3: Streak */
+  countUpElement('an-streak-val', d.maxStreak, 'd', 1000);
+  animateCircle('circ-streak', d.maxStreak / 90, 500);
+
+  /* Card 4: Age */
+  const ageMonths = Math.floor(d.walletAgeDays / 30);
+  if (ageMonths >= 1) {
+    document.getElementById('an-age-val').textContent = ageMonths + 'mo';
+  } else {
+    countUpElement('an-age-val', d.walletAgeDays, 'd', 1000);
+  }
+  animateCircle('circ-age', Math.min(d.walletAgeDays / 365, 1), 600);
+  document.getElementById('an-age-badge').textContent = 'Since ' + d.firstTxDate.toLocaleDateString('en-US', {month:'short', year:'2-digit'});
+
+  /* Chart */
+  setTimeout(() => {
+    drawActivityChart(d, 'week');
+    drawTimeChart(d.timeDistribution, d.timeDistribution.indexOf(Math.max(...d.timeDistribution)));
+  }, 200);
+
+  /* dApp rows */
+  const dapps = [
+    { icon: '🔄', label: 'Swap Transactions',  val: d.swaps,      max: Math.max(d.swaps, 1) },
+    { icon: '🌉', label: 'Bridge Transactions', val: d.bridges,    max: Math.max(d.swaps, 1) },
+    { icon: '🖼️', label: 'NFT Interactions',   val: d.nftTx,      max: Math.max(d.swaps, 1) },
+    { icon: '💧', label: 'Faucet Claims',       val: d.faucet,     max: 30 },
+    { icon: '📝', label: 'Unique Contracts',    val: d.contracts,  max: 20 },
+    { icon: '🏗️', label: 'Total dApp Actions', val: d.totalDapps, max: 20 },
+  ];
+  const maxBar = Math.max(...dapps.map(x => x.val), 1);
+  document.getElementById('an-dapp-rows').innerHTML = dapps.map(row => `
+    <div class="an-dapp-row">
+      <span class="an-dapp-icon">${row.icon}</span>
+      <span class="an-dapp-label">${row.label}</span>
+      <div class="an-dapp-bar-wrap">
+        <div class="an-dapp-bar" style="width:${Math.round((row.val/maxBar)*100)}%"></div>
+      </div>
+      <span class="an-dapp-val">${fmt(row.val)}</span>
+    </div>`).join('');
+
+  /* Ranking */
+  setTimeout(() => {
+    countUpElement('rankScoreNum', d.overallScore, '', 1400);
+    const rankCircle = document.getElementById('rankCircle');
+    if (rankCircle) {
+      rankCircle.style.transition = 'stroke-dashoffset 1.6s cubic-bezier(0.16,1,0.3,1)';
+      rankCircle.style.strokeDashoffset = 314 - (314 * d.overallScore / 100);
+    }
+    document.getElementById('rankPercentile').textContent = d.percentile;
+
+    setTimeout(() => {
+      document.getElementById('bar-activity').style.width = d.activityScore + '%';
+      document.getElementById('val-activity').textContent = d.activityScore;
+      document.getElementById('bar-defi').style.width = d.defiScore + '%';
+      document.getElementById('val-defi').textContent = d.defiScore;
+      document.getElementById('bar-consistency').style.width = d.consistencyScore + '%';
+      document.getElementById('val-consistency').textContent = d.consistencyScore;
+    }, 400);
+  }, 300);
+
+  /* Peak time */
+  document.getElementById('peakTime').textContent = d.peakLabel;
+
+  /* Micro tags */
+  document.getElementById('an-micro-row').innerHTML = [
+    { dot: '#00d4ff', label: 'First Transaction', val: d.firstTxDate.toLocaleDateString('en-US', {month:'short', day:'numeric', year:'numeric'}) },
+    { dot: '#22c55e', label: 'Last Activity',      val: d.lastTxDate.toLocaleDateString('en-US', {month:'short', day:'numeric'}) },
+    { dot: '#2563eb', label: 'Avg Tx / Day',       val: d.avgTxPerDay },
+    { dot: '#8b5cf6', label: 'Avg dApps / Week',   val: d.avgDappsPerWeek },
+    { dot: '#f59e0b', label: 'Wallet Age',          val: d.walletAgeDays + ' days' },
+    { dot: '#ec4899', label: 'Max Streak',          val: d.maxStreak + ' days' },
+  ].map(t => `
+    <div class="an-micro-tag">
+      <div class="an-micro-tag-dot" style="background:${t.dot};box-shadow:0 0 6px ${t.dot}80"></div>
+      ${t.label}:&nbsp;<span class="an-micro-tag-val">${t.val}</span>
+    </div>`).join('');
+
+  /* Scroll to analytics */
+  setTimeout(() => {
+    anSec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, 600);
+}
+
+/* ── CHART VIEW TOGGLE ── */
+function switchChartView(view) {
+  if (!analyticsData) return;
+  currentView = view;
+  document.getElementById('toggle-week').classList.toggle('active', view === 'week');
+  document.getElementById('toggle-month').classList.toggle('active', view === 'month');
+  drawActivityChart(analyticsData, view);
+}
+
 /* ── MAIN CHECK ── */
 async function checkDrop() {
   const wallet  = document.getElementById('walletInput').value.trim();
@@ -1691,6 +2680,10 @@ async function checkDrop() {
   const discord = document.getElementById('discordInput').value.trim();
   const rw      = document.getElementById('result-wrap');
   const btn     = document.getElementById('submitBtn');
+
+  // Hide analytics on new check
+  const anSec = document.getElementById('analytics-section');
+  anSec.classList.remove('visible');
 
   if (!/^0x[0-9a-fA-F]{40}$/.test(wallet)) {
     rw.innerHTML = `<div class="state-error"><strong>⚠️ Invalid Address</strong><span>Please enter a valid EVM wallet address starting with 0x…</span></div>`;
@@ -1787,6 +2780,9 @@ async function checkDrop() {
       </div>`;
 
     animateCount(result.alloc);
+
+    /* ── TRIGGER ANALYTICS after allocation render ── */
+    setTimeout(() => populateAnalytics(txCount), 600);
   }
 
   btn.disabled = false;
@@ -1812,12 +2808,21 @@ function resetChecker() {
   document.getElementById('walletInput').value = '';
   document.getElementById('twitterInput').value = '';
   document.getElementById('discordInput').value = '';
+  document.getElementById('analytics-section').classList.remove('visible');
   document.getElementById('walletInput').focus();
   document.getElementById('checker').scrollIntoView({ behavior:'smooth', block:'start' });
 }
 
 document.getElementById('walletInput').addEventListener('keydown', e => {
   if (e.key === 'Enter') checkDrop();
+});
+
+/* Redraw charts on resize */
+window.addEventListener('resize', () => {
+  if (analyticsData) {
+    drawActivityChart(analyticsData, currentView);
+    drawTimeChart(analyticsData.timeDistribution, analyticsData.timeDistribution.indexOf(Math.max(...analyticsData.timeDistribution)));
+  }
 });
 </script>
 </body>
