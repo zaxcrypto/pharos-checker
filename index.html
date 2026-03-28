@@ -662,9 +662,7 @@ body {
 }
 #result-wrap:not(:empty) { margin-top: 16px; }
 
-/* ────────────────────────────────────────────────
-   TERMINAL LOADER  (replaces old loading-v2)
-──────────────────────────────────────────────── */
+/* ── TERMINAL LOADER ── */
 .terminal-loader {
   background: rgba(4, 10, 26, 0.96);
   backdrop-filter: blur(40px) saturate(180%);
@@ -679,7 +677,6 @@ body {
     inset 0 1px 0 rgba(255,255,255,0.05);
 }
 
-/* header bar */
 .t-header {
   display: flex; align-items: center; gap: 10px;
   padding: 12px 18px;
@@ -703,10 +700,8 @@ body {
   border-radius: 5px; padding: 2px 8px;
 }
 
-/* body */
 .t-body { padding: 22px 24px 26px; }
 
-/* init typing line */
 .t-init-line {
   font-family: var(--font-mono); font-size: 0.8rem; font-weight: 500;
   color: rgba(0,212,255,0.88); margin-bottom: 22px;
@@ -719,7 +714,6 @@ body {
 }
 @keyframes t-blink { 0%,100%{opacity:1} 49%{opacity:1} 50%,99%{opacity:0} }
 
-/* steps container with vertical line */
 .t-steps {
   position: relative;
   padding-left: 32px;
@@ -734,7 +728,6 @@ body {
   );
 }
 
-/* each step */
 .t-step {
   position: relative; opacity: 0;
   transform: translateX(-8px);
@@ -742,7 +735,6 @@ body {
 }
 .t-step.vis { opacity: 1; transform: none; }
 
-/* dot on vertical line */
 .t-step::before {
   content: '';
   position: absolute; left: -25px; top: 15px;
@@ -769,7 +761,6 @@ body {
   50%    { box-shadow: 0 0 0 5px rgba(0,212,255,0.15), 0 0 18px rgba(0,212,255,0.65); }
 }
 
-/* step inner row */
 .t-step-row {
   display: flex; align-items: center; gap: 8px;
   padding: 9px 0 3px;
@@ -784,7 +775,6 @@ body {
 }
 .t-step.s-fail .t-step-text { color: rgba(140,155,175,0.5); }
 
-/* badge pill on right */
 .t-step-badge {
   flex-shrink: 0; display: flex; align-items: center; gap: 5px;
   font-family: var(--font-mono); font-size: 0.58rem; font-weight: 700;
@@ -821,7 +811,6 @@ body {
   background: #f87171; box-shadow: 0 0 6px rgba(239,68,68,0.5);
 }
 
-/* sub-text below each step */
 .t-sub {
   padding: 0 0 9px 20px;
   font-family: var(--font-mono); font-size: 0.63rem; font-weight: 500;
@@ -831,7 +820,6 @@ body {
 .t-sub-ok   { color: rgba(34,197,94,0.55); }
 .t-sub-fail { color: rgba(140,155,175,0.38); }
 
-/* finalizing row */
 .t-finalizing {
   margin-top: 16px; padding-top: 15px;
   border-top: 1px solid rgba(0,212,255,0.07);
@@ -908,7 +896,6 @@ body {
   to{opacity:1;transform:none}
 }
 
-/* ── RESULT HEADER ── */
 .result-header {
   background: linear-gradient(140deg, var(--navy-deep) 0%, #0f2b6e 30%, var(--blue-deep) 55%, var(--sky-deep) 80%, #00b8d4 100%);
   padding: 44px 36px 40px; text-align: center; position: relative; overflow: hidden;
@@ -1047,72 +1034,80 @@ body {
 }
 
 /* ══════════════════════════════════════════════════════
-   ANALYTICS DASHBOARD SECTION — NEW ADDITION
+   ANALYTICS DASHBOARD — PREMIUM REDESIGN (NO EMOJIS)
 ══════════════════════════════════════════════════════ */
 #analytics-section {
   display: none;
   position: relative; z-index: 1;
   width: 100%; max-width: 960px;
   margin: 0 auto;
-  padding: 32px 20px 16px;
-  animation: analytics-rise 0.7s cubic-bezier(0.16,1,0.3,1) both;
+  padding: 40px 20px 20px;
+  animation: analytics-rise 0.8s cubic-bezier(0.16,1,0.3,1) both;
 }
 #analytics-section.visible { display: block; }
 @keyframes analytics-rise {
-  from { opacity:0; transform:translateY(28px); }
+  from { opacity:0; transform:translateY(32px); }
   to   { opacity:1; transform:none; }
 }
 
 /* Section header */
 .an-header {
   display: flex; align-items: center; justify-content: space-between;
-  margin-bottom: 20px; flex-wrap: wrap; gap: 12px;
+  margin-bottom: 22px; flex-wrap: wrap; gap: 12px;
 }
-.an-header-left { display: flex; align-items: center; gap: 12px; }
+.an-header-left { display: flex; align-items: center; gap: 14px; }
 .an-section-icon {
-  width: 42px; height: 42px; border-radius: 12px;
+  width: 44px; height: 44px; border-radius: 13px;
   background: linear-gradient(135deg, var(--blue-deep), var(--sky-deep));
   display: flex; align-items: center; justify-content: center;
-  font-size: 1.1rem;
-  box-shadow: 0 4px 14px rgba(37,99,235,0.3), 0 0 20px rgba(0,212,255,0.15);
+  box-shadow: 0 4px 16px rgba(37,99,235,0.32), 0 0 24px rgba(0,212,255,0.15);
+  flex-shrink: 0;
 }
+.an-section-icon svg { width: 20px; height: 20px; }
 .an-section-title {
   font-family: var(--font-display); font-weight: 800; font-size: 1.1rem;
   color: var(--navy); letter-spacing: -0.03em;
 }
 .an-section-sub {
   font-family: var(--font-body); font-size: 0.68rem; font-weight: 500;
-  color: var(--muted); margin-top: 1px;
-  display: flex; align-items: center; gap: 5px;
+  color: var(--muted); margin-top: 2px;
 }
 .an-live-badge {
-  display: inline-flex; align-items: center; gap: 5px;
-  background: rgba(34,197,94,0.08); border: 1px solid rgba(34,197,94,0.25);
-  border-radius: 100px; padding: 4px 10px;
-  font-family: var(--font-body); font-size: 0.6rem; font-weight: 700;
+  display: inline-flex; align-items: center; gap: 7px;
+  background: rgba(34,197,94,0.07); border: 1px solid rgba(34,197,94,0.22);
+  border-radius: 100px; padding: 6px 14px;
+  font-family: var(--font-body); font-size: 0.62rem; font-weight: 700;
   letter-spacing: 0.12em; text-transform: uppercase; color: #16a34a;
 }
 
 /* Glass card base */
 .an-card {
-  background: rgba(255,255,255,0.7);
-  backdrop-filter: blur(32px) saturate(180%);
-  -webkit-backdrop-filter: blur(32px) saturate(180%);
-  border: 1px solid rgba(255,255,255,0.92);
-  border-radius: 20px;
-  box-shadow: 0 8px 32px rgba(37,99,235,0.09), 0 2px 0 rgba(255,255,255,1) inset;
-  transition: transform 0.25s, box-shadow 0.25s;
+  background: rgba(255,255,255,0.72);
+  backdrop-filter: blur(36px) saturate(200%);
+  -webkit-backdrop-filter: blur(36px) saturate(200%);
+  border: 1px solid rgba(255,255,255,0.94);
+  border-radius: 22px;
+  box-shadow:
+    0 2px 0 rgba(255,255,255,1) inset,
+    0 10px 36px rgba(37,99,235,0.08),
+    0 2px 8px rgba(14,165,233,0.05);
+  transition: transform 0.28s cubic-bezier(0.16,1,0.3,1), box-shadow 0.28s;
   overflow: hidden;
   position: relative;
 }
 .an-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 16px 50px rgba(37,99,235,0.13), 0 2px 0 rgba(255,255,255,1) inset, 0 0 40px rgba(0,212,255,0.06);
+  transform: translateY(-4px);
+  box-shadow:
+    0 2px 0 rgba(255,255,255,1) inset,
+    0 20px 56px rgba(37,99,235,0.12),
+    0 4px 16px rgba(14,165,233,0.08),
+    0 0 50px rgba(0,212,255,0.05);
 }
 .an-card::before {
   content: '';
   position: absolute; top: 0; left: 8%; right: 8%; height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.9), transparent);
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,1), transparent);
+  z-index: 1;
 }
 
 /* ── ROW 1: METRIC CARDS ── */
@@ -1121,176 +1116,170 @@ body {
   gap: 12px; margin-bottom: 14px;
 }
 .an-metric-card {
-  padding: 20px 18px 16px;
+  padding: 22px 20px 18px;
   position: relative;
 }
+
+/* Accent side stripe */
 .an-metric-card::after {
   content: '';
-  position: absolute; top: 0; right: 0; bottom: 0;
-  width: 3px; border-radius: 0 20px 20px 0;
+  position: absolute; top: 14px; right: 0; bottom: 14px;
+  width: 3px; border-radius: 2px 0 0 2px;
   background: var(--accent, linear-gradient(180deg, var(--neon), var(--sky-deep)));
+  opacity: 0.7;
 }
+
+/* SVG icon container */
 .an-metric-icon {
-  width: 34px; height: 34px; border-radius: 10px;
-  background: var(--icon-bg, rgba(37,99,235,0.08));
-  border: 1px solid var(--icon-border, rgba(191,219,254,0.5));
+  width: 36px; height: 36px; border-radius: 10px;
+  background: var(--icon-bg, rgba(37,99,235,0.07));
+  border: 1px solid var(--icon-border, rgba(191,219,254,0.45));
   display: flex; align-items: center; justify-content: center;
-  font-size: 0.95rem; margin-bottom: 12px;
+  margin-bottom: 14px;
+  transition: transform 0.2s;
 }
+.an-card:hover .an-metric-icon { transform: scale(1.08); }
+.an-metric-icon svg { width: 16px; height: 16px; }
+
+/* Circular progress ring */
+.an-circ-wrap {
+  position: absolute; top: 18px; right: 18px;
+}
+.an-circ { transform: rotate(-90deg); overflow: visible; }
+.an-circ-bg { fill: none; stroke: rgba(191,219,254,0.25); }
+.an-circ-fill {
+  fill: none;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 1.6s cubic-bezier(0.16,1,0.3,1);
+}
+
 .an-metric-val {
-  font-family: var(--font-display); font-size: 1.7rem; font-weight: 900;
+  font-family: var(--font-display); font-size: 1.75rem; font-weight: 900;
   color: var(--navy); letter-spacing: -0.04em; line-height: 1;
-  margin-bottom: 3px;
+  margin-bottom: 4px;
 }
 .an-metric-label {
   font-family: var(--font-body); font-size: 0.6rem; font-weight: 700;
   letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted);
-  margin-bottom: 8px;
+  margin-bottom: 10px;
 }
 .an-metric-badge {
-  display: inline-flex; align-items: center; gap: 4px;
-  font-family: var(--font-body); font-size: 0.62rem; font-weight: 700;
-  border-radius: 6px; padding: 3px 8px;
+  display: inline-flex; align-items: center; gap: 5px;
+  font-family: var(--font-mono); font-size: 0.6rem; font-weight: 700;
+  border-radius: 6px; padding: 3px 9px; letter-spacing: 0.03em;
 }
-.an-badge-up {
-  background: rgba(34,197,94,0.09); color: #16a34a;
-  border: 1px solid rgba(34,197,94,0.2);
-}
-.an-badge-info {
-  background: rgba(37,99,235,0.07); color: var(--blue-deep);
-  border: 1px solid rgba(191,219,254,0.5);
-}
-.an-badge-warn {
-  background: rgba(245,158,11,0.08); color: #d97706;
-  border: 1px solid rgba(245,158,11,0.2);
-}
-.an-badge-neon {
-  background: rgba(0,212,255,0.08); color: #0891b2;
-  border: 1px solid rgba(0,212,255,0.2);
-}
-
-/* Circular mini progress */
-.an-circ-wrap {
-  position: absolute; top: 16px; right: 16px;
-}
-.an-circ {
-  transform: rotate(-90deg);
-}
-.an-circ-bg { fill: none; stroke: rgba(191,219,254,0.3); }
-.an-circ-fill {
-  fill: none;
-  stroke-linecap: round;
-  transition: stroke-dashoffset 1.5s cubic-bezier(0.16,1,0.3,1);
-}
+.an-badge-up   { background: rgba(34,197,94,0.08);  color: #15803d; border: 1px solid rgba(34,197,94,0.2); }
+.an-badge-info { background: rgba(37,99,235,0.07);  color: var(--blue-deep); border: 1px solid rgba(191,219,254,0.5); }
+.an-badge-warn { background: rgba(245,158,11,0.07); color: #b45309; border: 1px solid rgba(245,158,11,0.2); }
+.an-badge-neon { background: rgba(0,212,255,0.07);  color: #0891b2; border: 1px solid rgba(0,212,255,0.2); }
 
 /* ── ROW 2: MAIN CHART ── */
 .an-row2 { margin-bottom: 14px; }
-.an-chart-card {
-  padding: 24px 24px 20px;
-}
+.an-chart-card { padding: 26px 26px 22px; }
 .an-chart-header {
-  display: flex; align-items: center; justify-content: space-between;
-  margin-bottom: 20px; flex-wrap: wrap; gap: 10px;
+  display: flex; align-items: flex-start; justify-content: space-between;
+  margin-bottom: 22px; flex-wrap: wrap; gap: 10px;
 }
 .an-chart-title {
-  font-family: var(--font-display); font-size: 0.88rem; font-weight: 800;
+  font-family: var(--font-display); font-size: 0.9rem; font-weight: 800;
   color: var(--navy); letter-spacing: -0.02em;
 }
 .an-chart-subtitle {
-  font-family: var(--font-body); font-size: 0.65rem; color: var(--muted);
-  margin-top: 2px;
+  font-family: var(--font-body); font-size: 0.65rem; color: var(--muted); margin-top: 3px;
 }
 .an-toggle-group {
-  display: flex; gap: 4px;
-  background: rgba(240,247,255,0.8);
+  display: flex; gap: 3px;
+  background: rgba(240,247,255,0.85);
   border: 1px solid rgba(191,219,254,0.5);
   border-radius: 10px; padding: 3px;
 }
 .an-toggle {
-  font-family: var(--font-body); font-size: 0.65rem; font-weight: 700;
-  letter-spacing: 0.06em; padding: 5px 12px; border-radius: 7px;
+  font-family: var(--font-body); font-size: 0.64rem; font-weight: 700;
+  letter-spacing: 0.06em; padding: 5px 14px; border-radius: 7px;
   border: none; background: transparent; color: var(--muted);
   transition: all 0.2s; cursor: pointer;
 }
 .an-toggle.active {
   background: linear-gradient(135deg, var(--blue-deep), var(--sky-deep));
   color: #fff;
-  box-shadow: 0 2px 8px rgba(37,99,235,0.3);
+  box-shadow: 0 2px 10px rgba(37,99,235,0.28);
 }
 .an-chart-canvas-wrap {
   position: relative; width: 100%; height: 180px;
 }
-.an-chart-canvas-wrap canvas { width: 100% !important; height: 100% !important; }
+.an-chart-canvas-wrap canvas { width: 100% !important; height: 100% !important; display: block; }
 
 /* ── ROW 3: INSIGHTS + RANKING ── */
 .an-row3 {
   display: grid; grid-template-columns: 1fr 1fr;
   gap: 12px; margin-bottom: 14px;
 }
-.an-insight-card, .an-rank-card {
-  padding: 22px 22px 18px;
-}
+.an-insight-card, .an-rank-card { padding: 24px 24px 20px; }
+
 .an-card-title {
-  font-family: var(--font-display); font-size: 0.8rem; font-weight: 800;
-  color: var(--navy); letter-spacing: -0.02em; margin-bottom: 16px;
-  display: flex; align-items: center; gap: 8px;
+  font-family: var(--font-display); font-size: 0.82rem; font-weight: 800;
+  color: var(--navy); letter-spacing: -0.02em; margin-bottom: 18px;
+  display: flex; align-items: center; gap: 10px;
 }
 .an-card-title-icon {
-  width: 28px; height: 28px; border-radius: 8px;
+  width: 30px; height: 30px; border-radius: 9px;
   display: flex; align-items: center; justify-content: center;
-  font-size: 0.8rem;
   background: rgba(37,99,235,0.07);
   border: 1px solid rgba(191,219,254,0.4);
+  flex-shrink: 0;
 }
+.an-card-title-icon svg { width: 14px; height: 14px; }
 
-/* dApp stat rows */
+/* dApp rows */
 .an-dapp-row {
   display: flex; align-items: center; gap: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 11px;
 }
 .an-dapp-icon {
-  font-size: 0.9rem; width: 22px; text-align: center; flex-shrink: 0;
+  width: 22px; height: 22px; display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  color: var(--blue-deep);
 }
+.an-dapp-icon svg { width: 14px; height: 14px; }
 .an-dapp-label {
   font-family: var(--font-body); font-size: 0.7rem; font-weight: 600;
   color: var(--navy); flex: 1;
 }
 .an-dapp-bar-wrap {
-  flex: 2; height: 6px; background: rgba(191,219,254,0.25);
+  flex: 2; height: 5px; background: rgba(191,219,254,0.2);
   border-radius: 3px; overflow: hidden;
 }
 .an-dapp-bar {
   height: 100%; border-radius: 3px;
   background: linear-gradient(90deg, var(--blue-deep), var(--neon));
-  transition: width 1.2s cubic-bezier(0.16,1,0.3,1);
+  transition: width 1.4s cubic-bezier(0.16,1,0.3,1);
+  width: 0%;
 }
 .an-dapp-val {
   font-family: var(--font-mono); font-size: 0.68rem; font-weight: 700;
-  color: var(--blue-deep); flex-shrink: 0; min-width: 24px; text-align: right;
+  color: var(--blue-deep); flex-shrink: 0; min-width: 26px; text-align: right;
 }
 
-/* Ranking card */
+/* Ranking */
 .an-rank-center {
-  display: flex; flex-direction: column; align-items: center;
-  margin-bottom: 16px;
+  display: flex; flex-direction: column; align-items: center; margin-bottom: 18px;
 }
 .an-rank-radial { position: relative; }
 .an-rank-score-text {
   position: absolute; top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
+  transform: translate(-50%, -50%); text-align: center;
 }
 .an-rank-score-num {
-  font-family: var(--font-display); font-size: 1.6rem; font-weight: 900;
+  font-family: var(--font-display); font-size: 1.7rem; font-weight: 900;
   color: var(--navy); line-height: 1;
 }
 .an-rank-score-lbl {
-  font-family: var(--font-body); font-size: 0.55rem; font-weight: 700;
-  letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted);
+  font-family: var(--font-body); font-size: 0.52rem; font-weight: 700;
+  letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted);
 }
 .an-rank-percentile {
-  font-family: var(--font-body); font-size: 0.8rem; font-weight: 700;
-  color: var(--blue-deep); margin-top: 10px; text-align: center;
+  font-family: var(--font-body); font-size: 0.78rem; font-weight: 700;
+  color: var(--blue-deep); margin-top: 12px; text-align: center;
 }
 .an-rank-percentile span {
   font-family: var(--font-display); font-size: 1.1rem; font-weight: 900;
@@ -1300,19 +1289,20 @@ body {
 }
 .an-score-rows { width: 100%; }
 .an-score-row {
-  display: flex; align-items: center; gap: 8px; margin-bottom: 8px;
+  display: flex; align-items: center; gap: 8px; margin-bottom: 9px;
 }
 .an-score-row-lbl {
   font-family: var(--font-body); font-size: 0.64rem; font-weight: 600;
   color: var(--muted); flex: 1;
 }
 .an-score-row-bar-wrap {
-  flex: 2; height: 5px; background: rgba(191,219,254,0.25);
+  flex: 2; height: 5px; background: rgba(191,219,254,0.2);
   border-radius: 3px; overflow: hidden;
 }
 .an-score-row-bar {
   height: 100%; border-radius: 3px;
-  transition: width 1.4s cubic-bezier(0.16,1,0.3,1);
+  transition: width 1.5s cubic-bezier(0.16,1,0.3,1);
+  width: 0%;
 }
 .an-score-row-val {
   font-family: var(--font-mono); font-size: 0.65rem; font-weight: 700;
@@ -1320,46 +1310,35 @@ body {
 }
 
 /* ── ROW 4: TIME DISTRIBUTION ── */
-.an-row4 {
-  margin-bottom: 14px;
-}
-.an-time-card {
-  padding: 22px 24px 18px;
-}
-.an-time-chart-wrap {
-  position: relative; width: 100%; height: 130px;
-}
+.an-row4 { margin-bottom: 14px; }
+.an-time-card { padding: 24px 26px 20px; }
+.an-time-chart-wrap { position: relative; width: 100%; height: 130px; }
 .an-time-peak-label {
-  display: inline-flex; align-items: center; gap: 6px;
-  margin-top: 12px;
-  background: rgba(0,212,255,0.07);
-  border: 1px solid rgba(0,212,255,0.2);
-  border-radius: 100px; padding: 5px 14px;
-  font-family: var(--font-body); font-size: 0.65rem; font-weight: 700;
+  display: inline-flex; align-items: center; gap: 8px;
+  margin-top: 14px;
+  background: rgba(0,212,255,0.06); border: 1px solid rgba(0,212,255,0.18);
+  border-radius: 100px; padding: 6px 16px;
+  font-family: var(--font-body); font-size: 0.65rem; font-weight: 600;
   color: #0891b2;
 }
+.an-time-peak-label svg { width: 12px; height: 12px; color: #00d4ff; flex-shrink: 0; }
 
 /* ── ROW 5: MICRO METRICS ── */
-.an-row5 {
-  display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 10px;
-}
+.an-row5 { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
 .an-micro-tag {
   display: flex; align-items: center; gap: 7px;
-  background: rgba(255,255,255,0.75); backdrop-filter: blur(20px);
-  border: 1px solid rgba(191,219,254,0.6);
-  border-radius: 100px; padding: 7px 14px;
+  background: rgba(255,255,255,0.78); backdrop-filter: blur(20px);
+  border: 1px solid rgba(191,219,254,0.55);
+  border-radius: 100px; padding: 7px 15px;
   font-family: var(--font-body); font-size: 0.66rem; font-weight: 600;
-  color: var(--navy); transition: all 0.2s;
+  color: var(--navy); transition: all 0.22s;
 }
 .an-micro-tag:hover {
-  background: rgba(219,234,254,0.8);
-  border-color: rgba(96,165,250,0.5);
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(37,99,235,0.1);
+  background: rgba(219,234,254,0.85); border-color: rgba(96,165,250,0.45);
+  transform: translateY(-2px); box-shadow: 0 4px 14px rgba(37,99,235,0.1);
 }
 .an-micro-tag-dot {
-  width: 6px; height: 6px; border-radius: 50%;
-  flex-shrink: 0;
+  width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0;
 }
 .an-micro-tag-val {
   font-family: var(--font-mono); font-size: 0.68rem; font-weight: 700;
@@ -1369,28 +1348,28 @@ body {
 /* Chart tooltip */
 .an-tooltip {
   position: absolute; pointer-events: none;
-  background: rgba(13,31,60,0.92);
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(0,212,255,0.25);
-  border-radius: 10px; padding: 9px 13px;
+  background: rgba(10,24,58,0.94);
+  backdrop-filter: blur(24px);
+  border: 1px solid rgba(0,212,255,0.22);
+  border-radius: 11px; padding: 10px 14px;
   font-family: var(--font-body); font-size: 0.68rem;
   color: rgba(255,255,255,0.85);
   white-space: nowrap;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.35);
   z-index: 10; opacity: 0;
-  transition: opacity 0.15s;
+  transition: opacity 0.14s;
   transform: translateX(-50%);
 }
 .an-tooltip.vis { opacity: 1; }
-.an-tooltip-date { font-weight: 700; color: var(--neon); margin-bottom: 3px; }
-.an-tooltip-tx { color: rgba(255,255,255,0.7); }
+.an-tooltip-date { font-weight: 700; color: var(--neon); margin-bottom: 3px; font-size: 0.65rem; }
+.an-tooltip-tx { color: rgba(255,255,255,0.65); }
 .an-tooltip-streak {
-  display: inline-block; margin-top: 4px;
-  font-size: 0.6rem; font-weight: 700; letter-spacing: 0.08em;
-  border-radius: 4px; padding: 2px 7px;
+  display: inline-block; margin-top: 5px;
+  font-size: 0.6rem; font-weight: 700; letter-spacing: 0.06em;
+  border-radius: 4px; padding: 2px 8px;
 }
-.an-tooltip-streak.active { background: rgba(34,197,94,0.15); color: #4ade80; border: 1px solid rgba(34,197,94,0.3); }
-.an-tooltip-streak.inactive { background: rgba(100,116,139,0.15); color: rgba(148,163,184,0.8); border: 1px solid rgba(100,116,139,0.2); }
+.an-tooltip-streak.active   { background: rgba(34,197,94,0.12); color: #4ade80; border: 1px solid rgba(34,197,94,0.25); }
+.an-tooltip-streak.inactive { background: rgba(100,116,139,0.12); color: rgba(148,163,184,0.75); border: 1px solid rgba(100,116,139,0.18); }
 
 @media (max-width: 768px) {
   .an-row1 { grid-template-columns: 1fr 1fr; }
@@ -1398,9 +1377,9 @@ body {
 }
 @media (max-width: 480px) {
   .an-row1 { grid-template-columns: 1fr 1fr; gap: 8px; }
-  .an-metric-val { font-size: 1.3rem; }
+  .an-metric-val { font-size: 1.35rem; }
   .an-chart-card, .an-insight-card, .an-rank-card, .an-time-card { padding: 16px 14px; }
-  #analytics-section { padding: 20px 14px 12px; }
+  #analytics-section { padding: 22px 14px 14px; }
 }
 /* ══ END ANALYTICS CSS ══ */
 
@@ -1522,9 +1501,7 @@ body {
   box-shadow: 0 8px 24px rgba(37,99,235,0.45), 0 0 40px rgba(0,212,255,0.18), 0 0 0 1px rgba(255,255,255,0.12) inset;
 }
 .btn-follow:hover::before { left: 100%; }
-.btn-follow svg {
-  width: 13px; height: 13px;
-}
+.btn-follow svg { width: 13px; height: 13px; }
 
 /* ── FOOTER ── */
 .footer {
@@ -1763,11 +1740,20 @@ body {
   <div id="result-wrap"></div>
 </section>
 
-<!-- ══ ANALYTICS SECTION (injected after allocation) ══ -->
+<!-- ══ ANALYTICS SECTION ══ -->
 <div id="analytics-section">
+
+  <!-- HEADER -->
   <div class="an-header">
     <div class="an-header-left">
-      <div class="an-section-icon">📊</div>
+      <div class="an-section-icon">
+        <!-- Bar chart icon -->
+        <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="2" y="10" width="4" height="8" rx="1" fill="rgba(255,255,255,0.9)"/>
+          <rect x="8" y="6" width="4" height="12" rx="1" fill="rgba(255,255,255,0.9)"/>
+          <rect x="14" y="2" width="4" height="16" rx="1" fill="rgba(255,255,255,0.9)"/>
+        </svg>
+      </div>
       <div>
         <div class="an-section-title">Wallet Analytics</div>
         <div class="an-section-sub">Deep-dive into your on-chain activity</div>
@@ -1781,7 +1767,9 @@ body {
 
   <!-- ROW 1: METRIC CARDS -->
   <div class="an-row1">
-    <div class="an-card an-metric-card" style="--accent: linear-gradient(180deg,#00d4ff,#0ea5e9)">
+
+    <!-- Transactions -->
+    <div class="an-card an-metric-card" style="--accent:linear-gradient(180deg,#00d4ff,#0ea5e9)">
       <div class="an-circ-wrap">
         <svg class="an-circ" width="44" height="44" viewBox="0 0 44 44">
           <circle class="an-circ-bg" cx="22" cy="22" r="18" stroke-width="3"/>
@@ -1789,19 +1777,24 @@ body {
             stroke="url(#gradTx)" stroke-dasharray="113" stroke-dashoffset="113"/>
           <defs>
             <linearGradient id="gradTx" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stop-color="#00d4ff"/>
-              <stop offset="100%" stop-color="#0ea5e9"/>
+              <stop offset="0%" stop-color="#00d4ff"/><stop offset="100%" stop-color="#0ea5e9"/>
             </linearGradient>
           </defs>
         </svg>
       </div>
-      <div class="an-metric-icon" style="--icon-bg:rgba(0,212,255,0.08);--icon-border:rgba(0,212,255,0.2)">⚡</div>
+      <div class="an-metric-icon" style="--icon-bg:rgba(0,212,255,0.07);--icon-border:rgba(0,212,255,0.18)">
+        <!-- Lightning / zap -->
+        <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style="color:rgba(0,180,220,0.9)">
+          <path d="M9 1.5L3.5 9H8L7 14.5L13.5 7H9L9 1.5Z" fill="currentColor"/>
+        </svg>
+      </div>
       <div class="an-metric-val" id="an-tx-val">—</div>
       <div class="an-metric-label">Total Transactions</div>
       <div class="an-metric-badge an-badge-up" id="an-tx-badge">+0% vs avg</div>
     </div>
 
-    <div class="an-card an-metric-card" style="--accent: linear-gradient(180deg,#22c55e,#16a34a)">
+    <!-- Active Days -->
+    <div class="an-card an-metric-card" style="--accent:linear-gradient(180deg,#22c55e,#16a34a)">
       <div class="an-circ-wrap">
         <svg class="an-circ" width="44" height="44" viewBox="0 0 44 44">
           <circle class="an-circ-bg" cx="22" cy="22" r="18" stroke-width="3"/>
@@ -1809,19 +1802,30 @@ body {
             stroke="url(#gradDays)" stroke-dasharray="113" stroke-dashoffset="113"/>
           <defs>
             <linearGradient id="gradDays" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stop-color="#22c55e"/>
-              <stop offset="100%" stop-color="#16a34a"/>
+              <stop offset="0%" stop-color="#22c55e"/><stop offset="100%" stop-color="#16a34a"/>
             </linearGradient>
           </defs>
         </svg>
       </div>
-      <div class="an-metric-icon" style="--icon-bg:rgba(34,197,94,0.08);--icon-border:rgba(34,197,94,0.2)">📅</div>
+      <div class="an-metric-icon" style="--icon-bg:rgba(34,197,94,0.07);--icon-border:rgba(34,197,94,0.18)">
+        <!-- Calendar -->
+        <svg viewBox="0 0 16 16" fill="none" stroke="rgba(22,163,74,0.9)" stroke-width="1.4" stroke-linecap="round" xmlns="http://www.w3.org/2000/svg">
+          <rect x="1.5" y="3" width="13" height="11.5" rx="1.5"/>
+          <line x1="1.5" y1="7" x2="14.5" y2="7"/>
+          <line x1="5" y1="1.5" x2="5" y2="4.5"/>
+          <line x1="11" y1="1.5" x2="11" y2="4.5"/>
+          <line x1="5" y1="10.5" x2="5" y2="10.5" stroke-width="2"/>
+          <line x1="8" y1="10.5" x2="8" y2="10.5" stroke-width="2"/>
+          <line x1="11" y1="10.5" x2="11" y2="10.5" stroke-width="2"/>
+        </svg>
+      </div>
       <div class="an-metric-val" id="an-days-val">—</div>
       <div class="an-metric-label">Active Days</div>
       <div class="an-metric-badge an-badge-info" id="an-days-badge">—</div>
     </div>
 
-    <div class="an-card an-metric-card" style="--accent: linear-gradient(180deg,#f59e0b,#d97706)">
+    <!-- Streak -->
+    <div class="an-card an-metric-card" style="--accent:linear-gradient(180deg,#f59e0b,#d97706)">
       <div class="an-circ-wrap">
         <svg class="an-circ" width="44" height="44" viewBox="0 0 44 44">
           <circle class="an-circ-bg" cx="22" cy="22" r="18" stroke-width="3"/>
@@ -1829,19 +1833,25 @@ body {
             stroke="url(#gradStreak)" stroke-dasharray="113" stroke-dashoffset="113"/>
           <defs>
             <linearGradient id="gradStreak" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stop-color="#f59e0b"/>
-              <stop offset="100%" stop-color="#d97706"/>
+              <stop offset="0%" stop-color="#f59e0b"/><stop offset="100%" stop-color="#d97706"/>
             </linearGradient>
           </defs>
         </svg>
       </div>
-      <div class="an-metric-icon" style="--icon-bg:rgba(245,158,11,0.08);--icon-border:rgba(245,158,11,0.2)">🔥</div>
+      <div class="an-metric-icon" style="--icon-bg:rgba(245,158,11,0.07);--icon-border:rgba(245,158,11,0.18)">
+        <!-- Trending up / streak -->
+        <svg viewBox="0 0 16 16" fill="none" stroke="rgba(180,83,9,0.9)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
+          <polyline points="1,12 5,7 8,10 12,4 15,6"/>
+          <polyline points="12,4 15,4 15,7"/>
+        </svg>
+      </div>
       <div class="an-metric-val" id="an-streak-val">—</div>
       <div class="an-metric-label">Streak Record</div>
       <div class="an-metric-badge an-badge-warn">Best streak</div>
     </div>
 
-    <div class="an-card an-metric-card" style="--accent: linear-gradient(180deg,#8b5cf6,#6d28d9)">
+    <!-- Wallet Age -->
+    <div class="an-card an-metric-card" style="--accent:linear-gradient(180deg,#8b5cf6,#6d28d9)">
       <div class="an-circ-wrap">
         <svg class="an-circ" width="44" height="44" viewBox="0 0 44 44">
           <circle class="an-circ-bg" cx="22" cy="22" r="18" stroke-width="3"/>
@@ -1849,13 +1859,18 @@ body {
             stroke="url(#gradAge)" stroke-dasharray="113" stroke-dashoffset="113"/>
           <defs>
             <linearGradient id="gradAge" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stop-color="#8b5cf6"/>
-              <stop offset="100%" stop-color="#6d28d9"/>
+              <stop offset="0%" stop-color="#8b5cf6"/><stop offset="100%" stop-color="#6d28d9"/>
             </linearGradient>
           </defs>
         </svg>
       </div>
-      <div class="an-metric-icon" style="--icon-bg:rgba(139,92,246,0.08);--icon-border:rgba(139,92,246,0.2)">🏛️</div>
+      <div class="an-metric-icon" style="--icon-bg:rgba(139,92,246,0.07);--icon-border:rgba(139,92,246,0.18)">
+        <!-- Clock -->
+        <svg viewBox="0 0 16 16" fill="none" stroke="rgba(109,40,217,0.9)" stroke-width="1.4" stroke-linecap="round" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="8" cy="8" r="6.5"/>
+          <polyline points="8,4.5 8,8 10.5,10"/>
+        </svg>
+      </div>
       <div class="an-metric-val" id="an-age-val">—</div>
       <div class="an-metric-label">Wallet Age</div>
       <div class="an-metric-badge an-badge-neon" id="an-age-badge">Since first tx</div>
@@ -1888,9 +1903,16 @@ body {
 
   <!-- ROW 3: INSIGHTS + RANKING -->
   <div class="an-row3">
+
     <div class="an-card an-insight-card">
       <div class="an-card-title">
-        <div class="an-card-title-icon">🔍</div>
+        <div class="an-card-title-icon">
+          <!-- Scan / search -->
+          <svg viewBox="0 0 14 14" fill="none" stroke="rgba(37,99,235,0.75)" stroke-width="1.4" stroke-linecap="round" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="5.5" cy="5.5" r="4"/>
+            <line x1="9" y1="9" x2="13" y2="13"/>
+          </svg>
+        </div>
         dApp Behavior Analysis
       </div>
       <div id="an-dapp-rows"></div>
@@ -1898,13 +1920,18 @@ body {
 
     <div class="an-card an-rank-card">
       <div class="an-card-title">
-        <div class="an-card-title-icon">🏆</div>
+        <div class="an-card-title-icon">
+          <!-- Trophy / star -->
+          <svg viewBox="0 0 14 14" fill="none" stroke="rgba(37,99,235,0.75)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
+            <path d="M7 1l1.5 3 3.5.5-2.5 2.5.5 3.5L7 9l-3 1.5.5-3.5L2 4.5l3.5-.5z"/>
+          </svg>
+        </div>
         Wallet Ranking
       </div>
       <div class="an-rank-center">
         <div class="an-rank-radial">
           <svg width="120" height="120" viewBox="0 0 120 120">
-            <circle cx="60" cy="60" r="50" fill="none" stroke="rgba(191,219,254,0.2)" stroke-width="8"/>
+            <circle cx="60" cy="60" r="50" fill="none" stroke="rgba(191,219,254,0.18)" stroke-width="8"/>
             <circle cx="60" cy="60" r="50" fill="none"
               stroke="url(#rankGrad)" stroke-width="8"
               stroke-linecap="round"
@@ -1931,21 +1958,21 @@ body {
         <div class="an-score-row">
           <span class="an-score-row-lbl">Activity Score</span>
           <div class="an-score-row-bar-wrap">
-            <div class="an-score-row-bar" id="bar-activity" style="width:0%;background:linear-gradient(90deg,#00d4ff,#0ea5e9)"></div>
+            <div class="an-score-row-bar" id="bar-activity" style="background:linear-gradient(90deg,#00d4ff,#0ea5e9)"></div>
           </div>
           <span class="an-score-row-val" id="val-activity">—</span>
         </div>
         <div class="an-score-row">
           <span class="an-score-row-lbl">DeFi Score</span>
           <div class="an-score-row-bar-wrap">
-            <div class="an-score-row-bar" id="bar-defi" style="width:0%;background:linear-gradient(90deg,#22c55e,#16a34a)"></div>
+            <div class="an-score-row-bar" id="bar-defi" style="background:linear-gradient(90deg,#22c55e,#16a34a)"></div>
           </div>
           <span class="an-score-row-val" id="val-defi">—</span>
         </div>
         <div class="an-score-row">
           <span class="an-score-row-lbl">Consistency</span>
           <div class="an-score-row-bar-wrap">
-            <div class="an-score-row-bar" id="bar-consistency" style="width:0%;background:linear-gradient(90deg,#f59e0b,#d97706)"></div>
+            <div class="an-score-row-bar" id="bar-consistency" style="background:linear-gradient(90deg,#f59e0b,#d97706)"></div>
           </div>
           <span class="an-score-row-val" id="val-consistency">—</span>
         </div>
@@ -1966,13 +1993,17 @@ body {
         <canvas id="timeChart"></canvas>
       </div>
       <div class="an-time-peak-label" id="peakLabel">
-        ⚡ Most active at <strong id="peakTime">—</strong>
+        <svg viewBox="0 0 12 12" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <path d="M6 0.5L4 5H0.5L3.5 7.5L2.5 11.5L6 9L9.5 11.5L8.5 7.5L11.5 5H8L6 0.5Z"/>
+        </svg>
+        Most active at &nbsp;<strong id="peakTime">—</strong>
       </div>
     </div>
   </div>
 
   <!-- ROW 5: MICRO METRICS -->
   <div class="an-row5" id="an-micro-row"></div>
+
 </div>
 <!-- ══ END ANALYTICS SECTION ══ -->
 
@@ -2117,17 +2148,17 @@ function getAllocation(tx) {
   if (tx < 10) return null;
   if (tx < 100) {
     const alloc = Math.floor(10000 + ((tx-10)/90)*5000);
-    return { alloc, tier:'🌊 Explorer', label:'Explorer' };
+    return { alloc, tier:'Explorer', label:'Explorer' };
   }
   const alloc = Math.min(15000 + (tx-100)*50, 80000);
-  let tier='⚓ Captain', label='Captain';
-  if (tx >= 500) { tier='🌟 Lighthouse'; label='Lighthouse'; }
+  let tier='Captain', label='Captain';
+  if (tx >= 500) { tier='Lighthouse'; label='Lighthouse'; }
   return { alloc, tier, label };
 }
 
 function fmt(n) { return n.toLocaleString('en-US'); }
 
-/* ── PREMIUM TERMINAL LOADER ── */
+/* ── TERMINAL LOADER ── */
 async function animateLoadingLines(wallet) {
   const rw = document.getElementById('result-wrap');
   const shortWallet = wallet.slice(0, 6) + '...' + wallet.slice(-4);
@@ -2257,19 +2288,16 @@ function generateAnalyticsData(txCount) {
     return x - Math.floor(x);
   };
 
-  // Derived metrics
   const activeDays = Math.min(Math.floor(txCount * (0.4 + rng(1) * 0.3)), 315);
   const maxStreak  = Math.min(Math.floor(activeDays * (0.3 + rng(2) * 0.2)), 90);
   const walletAgeDays = Math.floor(100 + rng(3) * 200 + txCount * 0.8);
   const avgTxPerDay = (txCount / Math.max(walletAgeDays, 1)).toFixed(2);
   const avgDappsPerWeek = (2 + rng(4) * 6).toFixed(1);
 
-  // Date metrics
   const now = new Date();
   const firstTxDate = new Date(now - walletAgeDays * 86400000);
   const lastTxDate = new Date(now - Math.floor(rng(5) * 7) * 86400000);
 
-  // Monthly chart data (last 30 days)
   const monthData = [];
   for (let i = 29; i >= 0; i--) {
     const d = new Date(now - i * 86400000);
@@ -2278,11 +2306,9 @@ function generateAnalyticsData(txCount) {
     monthData.push({ date: d, txs, isActive });
   }
 
-  // Weekly chart data (last 7 days)
   const weekData = monthData.slice(-7);
 
-  // Time distribution (0–23 hours)
-  const PEAKS = [8, 12, 20]; // morning, noon, evening
+  const PEAKS = [8, 12, 20];
   const timeDistribution = Array.from({length: 24}, (_, h) => {
     let val = 0;
     PEAKS.forEach(pk => { val += Math.exp(-0.5 * Math.pow((h - pk) / 2.5, 2)); });
@@ -2292,7 +2318,6 @@ function generateAnalyticsData(txCount) {
   const peakHour = timeDistribution.indexOf(Math.max(...timeDistribution));
   const peakLabel = peakHour < 12 ? `${peakHour} AM` : peakHour === 12 ? '12 PM' : `${peakHour - 12} PM`;
 
-  // dApp categories
   const totalDapps = Math.floor(2 + rng(6) * 15);
   const swaps      = Math.floor(txCount * (0.1 + rng(7) * 0.15));
   const bridges    = Math.floor(txCount * (0.02 + rng(8) * 0.05));
@@ -2300,13 +2325,11 @@ function generateAnalyticsData(txCount) {
   const faucet     = Math.floor(5 + rng(10) * 20);
   const contracts  = Math.floor(3 + rng(11) * 12);
 
-  // Scores
   const activityScore   = Math.min(100, Math.floor(20 + (txCount / 500) * 60 + rng(12) * 20));
   const defiScore       = Math.min(100, Math.floor(10 + swaps * 0.3 + bridges * 2 + rng(13) * 15));
   const consistencyScore= Math.min(100, Math.floor((activeDays / Math.max(walletAgeDays, 1)) * 100));
   const overallScore    = Math.round((activityScore * 0.4 + defiScore * 0.3 + consistencyScore * 0.3));
 
-  // Percentile
   let percentile;
   if (overallScore >= 85) percentile = '5%';
   else if (overallScore >= 70) percentile = '15%';
@@ -2322,8 +2345,10 @@ function generateAnalyticsData(txCount) {
   };
 }
 
-/* ── COUNT UP ANIMATION ── */
-function countUpElement(id, target, suffix = '', dur = 1200) {
+/* ── COUNT UP ── */
+function countUpElement(id, target, suffix, dur) {
+  dur = dur || 1200;
+  suffix = suffix || '';
   const el = document.getElementById(id);
   if (!el) return;
   let start = 0;
@@ -2339,17 +2364,46 @@ function countUpElement(id, target, suffix = '', dur = 1200) {
 }
 
 /* ── ANIMATE CIRCLE ── */
-function animateCircle(id, pct, delay = 0) {
+function animateCircle(id, pct, delay) {
+  delay = delay || 0;
   setTimeout(() => {
     const el = document.getElementById(id);
     if (!el) return;
-    const circumference = 113;
-    el.style.strokeDashoffset = circumference - (circumference * Math.min(pct, 1));
+    el.style.strokeDashoffset = 113 - (113 * Math.min(pct, 1));
   }, delay);
 }
 
-/* ── DRAW ACTIVITY CHART ── */
-function drawActivityChart(data, view) {
+/* ── SETUP CHART TOOLTIP ── */
+function setupChartTooltip(canvas, xs, ys, points) {
+  const tooltip  = document.getElementById('activityTooltip');
+  const ttDate   = document.getElementById('ttDate');
+  const ttTx     = document.getElementById('ttTx');
+  const ttStreak = document.getElementById('ttStreak');
+  if (!tooltip) return;
+
+  function showTooltip(e) {
+    const box = canvas.getBoundingClientRect();
+    const mouseX = (e.touches ? e.touches[0].clientX : e.clientX) - box.left;
+    let closest = 0, minDist = Infinity;
+    xs.forEach((x, i) => { const d = Math.abs(x - mouseX); if (d < minDist) { minDist = d; closest = i; } });
+    if (minDist > 40) { tooltip.classList.remove('vis'); return; }
+    const p = points[closest];
+    ttDate.textContent = p.date.toLocaleDateString('en-US', {month:'short', day:'numeric'});
+    ttTx.textContent = p.txs + ' transaction' + (p.txs !== 1 ? 's' : '');
+    ttStreak.textContent = p.isActive ? 'Streak Active' : 'Inactive';
+    ttStreak.className = 'an-tooltip-streak ' + (p.isActive ? 'active' : 'inactive');
+    tooltip.style.left = xs[closest] + 'px';
+    tooltip.style.top  = (ys[closest] - 72) + 'px';
+    tooltip.classList.add('vis');
+  }
+  canvas.onmousemove = showTooltip;
+  canvas.ontouchmove = showTooltip;
+  canvas.onmouseleave = () => tooltip.classList.remove('vis');
+}
+
+/* ── DRAW ACTIVITY CHART — animated line draw from left to right ── */
+function drawActivityChart(data, view, animated) {
+  if (animated === undefined) animated = false;
   const canvas = document.getElementById('activityChart');
   if (!canvas) return;
 
@@ -2372,123 +2426,154 @@ function drawActivityChart(data, view) {
   const xs = points.map((_, i) => padL + (i / (points.length - 1)) * (W - padL - padR));
   const ys = points.map(p => padT + (1 - p.txs / maxTx) * (H - padT - padB));
 
-  ctx.clearRect(0, 0, W, H);
+  function render(clipProgress) {
+    ctx.clearRect(0, 0, W, H);
 
-  /* Y-axis grid lines */
-  ctx.strokeStyle = 'rgba(191,219,254,0.25)';
-  ctx.lineWidth = 1;
-  for (let i = 0; i <= 4; i++) {
-    const y = padT + (i / 4) * (H - padT - padB);
-    ctx.beginPath(); ctx.moveTo(padL, y); ctx.lineTo(W - padR, y); ctx.stroke();
-    ctx.fillStyle = 'rgba(100,116,139,0.6)';
+    /* Y-axis dashed grid */
+    ctx.setLineDash([3, 4]);
+    ctx.strokeStyle = 'rgba(191,219,254,0.18)';
+    ctx.lineWidth = 1;
+    for (let i = 0; i <= 4; i++) {
+      const y = padT + (i / 4) * (H - padT - padB);
+      ctx.beginPath(); ctx.moveTo(padL, y); ctx.lineTo(W - padR, y); ctx.stroke();
+    }
+    ctx.setLineDash([]);
+
+    /* Y labels */
+    ctx.fillStyle = 'rgba(100,116,139,0.55)';
     ctx.font = '9px "Plus Jakarta Sans"';
     ctx.textAlign = 'right';
-    ctx.fillText(fmt(Math.round(maxTx * (1 - i / 4))), padL - 5, y + 3);
-  }
-
-  /* Streak highlight bands */
-  points.forEach((p, i) => {
-    if (p.isActive && i < points.length - 1) {
-      ctx.fillStyle = 'rgba(34,197,94,0.04)';
-      const x1 = xs[i], x2 = xs[i + 1] || xs[i] + (W - padL - padR) / (points.length - 1);
-      ctx.fillRect(x1, padT, x2 - x1, H - padT - padB);
+    for (let i = 0; i <= 4; i++) {
+      const y = padT + (i / 4) * (H - padT - padB);
+      ctx.fillText(fmt(Math.round(maxTx * (1 - i / 4))), padL - 5, y + 3);
     }
-  });
 
-  /* Gradient fill */
-  const grad = ctx.createLinearGradient(0, padT, 0, H - padB);
-  grad.addColorStop(0, 'rgba(37,99,235,0.22)');
-  grad.addColorStop(0.5, 'rgba(0,212,255,0.08)');
-  grad.addColorStop(1, 'rgba(37,99,235,0)');
+    /* Clip rect for progressive reveal */
+    const clipRight = padL + (W - padL - padR) * clipProgress;
 
-  ctx.beginPath();
-  ctx.moveTo(xs[0], H - padB);
-  xs.forEach((x, i) => {
-    if (i === 0) ctx.lineTo(x, ys[i]);
-    else {
-      const cpx = (xs[i - 1] + x) / 2;
-      ctx.bezierCurveTo(cpx, ys[i - 1], cpx, ys[i], x, ys[i]);
-    }
-  });
-  ctx.lineTo(xs[xs.length - 1], H - padB);
-  ctx.closePath();
-  ctx.fillStyle = grad;
-  ctx.fill();
-
-  /* Glow line */
-  const glowGrad = ctx.createLinearGradient(0, 0, W, 0);
-  glowGrad.addColorStop(0, 'rgba(0,212,255,0.9)');
-  glowGrad.addColorStop(0.5, 'rgba(37,99,235,0.9)');
-  glowGrad.addColorStop(1, 'rgba(0,212,255,0.9)');
-
-  ctx.shadowColor = 'rgba(0,212,255,0.5)';
-  ctx.shadowBlur = 8;
-  ctx.beginPath();
-  xs.forEach((x, i) => {
-    if (i === 0) ctx.moveTo(x, ys[i]);
-    else {
-      const cpx = (xs[i - 1] + x) / 2;
-      ctx.bezierCurveTo(cpx, ys[i - 1], cpx, ys[i], x, ys[i]);
-    }
-  });
-  ctx.strokeStyle = glowGrad;
-  ctx.lineWidth = 2.5;
-  ctx.stroke();
-  ctx.shadowBlur = 0;
-
-  /* Dots */
-  points.forEach((p, i) => {
+    ctx.save();
     ctx.beginPath();
-    ctx.arc(xs[i], ys[i], p.txs > 0 ? 4 : 2.5, 0, Math.PI * 2);
-    ctx.fillStyle = p.txs > 0 ? '#00d4ff' : 'rgba(191,219,254,0.4)';
-    ctx.shadowColor = p.txs > 0 ? 'rgba(0,212,255,0.8)' : 'transparent';
-    ctx.shadowBlur = p.txs > 0 ? 8 : 0;
+    ctx.rect(0, 0, clipRight + 8, H);
+    ctx.clip();
+
+    /* Gradient fill */
+    const grad = ctx.createLinearGradient(0, padT, 0, H - padB);
+    grad.addColorStop(0,   'rgba(37,99,235,0.16)');
+    grad.addColorStop(0.55,'rgba(0,212,255,0.05)');
+    grad.addColorStop(1,   'rgba(37,99,235,0)');
+
+    ctx.beginPath();
+    ctx.moveTo(xs[0], H - padB);
+    xs.forEach((x, i) => {
+      if (i === 0) ctx.lineTo(x, ys[i]);
+      else {
+        const cpx = (xs[i-1] + x) / 2;
+        ctx.bezierCurveTo(cpx, ys[i-1], cpx, ys[i], x, ys[i]);
+      }
+    });
+    ctx.lineTo(xs[xs.length-1], H - padB);
+    ctx.closePath();
+    ctx.fillStyle = grad;
     ctx.fill();
-    ctx.shadowBlur = 0;
-  });
 
-  /* X-axis labels */
-  ctx.fillStyle = 'rgba(100,116,139,0.7)';
-  ctx.font = '9px "Plus Jakarta Sans"';
-  ctx.textAlign = 'center';
-  const step = Math.max(1, Math.floor(points.length / 7));
-  points.forEach((p, i) => {
-    if (i % step === 0 || i === points.length - 1) {
-      const label = view === 'week'
-        ? p.date.toLocaleDateString('en-US', {weekday:'short'})
-        : p.date.getDate().toString();
-      ctx.fillText(label, xs[i], H - 6);
+    /* Glow line */
+    const lineGrad = ctx.createLinearGradient(padL, 0, W - padR, 0);
+    lineGrad.addColorStop(0,   '#00d4ff');
+    lineGrad.addColorStop(0.5, '#2563eb');
+    lineGrad.addColorStop(1,   '#00d4ff');
+
+    ctx.shadowColor = 'rgba(0,212,255,0.4)';
+    ctx.shadowBlur  = 10;
+    ctx.beginPath();
+    xs.forEach((x, i) => {
+      if (i === 0) ctx.moveTo(x, ys[i]);
+      else {
+        const cpx = (xs[i-1] + x) / 2;
+        ctx.bezierCurveTo(cpx, ys[i-1], cpx, ys[i], x, ys[i]);
+      }
+    });
+    ctx.strokeStyle = lineGrad;
+    ctx.lineWidth   = 2.5;
+    ctx.stroke();
+    ctx.shadowBlur  = 0;
+
+    ctx.restore();
+
+    /* Dots — only for revealed portion */
+    points.forEach((p, i) => {
+      if (xs[i] > clipRight + 5) return;
+      ctx.beginPath();
+      ctx.arc(xs[i], ys[i], p.txs > 0 ? 4 : 2.5, 0, Math.PI * 2);
+      ctx.fillStyle = p.txs > 0 ? '#00d4ff' : 'rgba(191,219,254,0.3)';
+      if (p.txs > 0) { ctx.shadowColor = 'rgba(0,212,255,0.8)'; ctx.shadowBlur = 8; }
+      ctx.fill();
+      ctx.shadowBlur = 0;
+    });
+
+    /* Leading scanner dot */
+    if (clipProgress < 0.999) {
+      // Find the y-position at the clip edge via linear interpolation on segments
+      let edgeY = H / 2;
+      for (let i = 1; i < xs.length; i++) {
+        if (xs[i] >= clipRight) {
+          const t = (clipRight - xs[i-1]) / Math.max(xs[i] - xs[i-1], 0.001);
+          edgeY = ys[i-1] + (ys[i] - ys[i-1]) * Math.min(t, 1);
+          break;
+        }
+      }
+      ctx.save();
+      ctx.beginPath();
+      ctx.arc(clipRight, edgeY, 5.5, 0, Math.PI * 2);
+      ctx.fillStyle = '#fff';
+      ctx.shadowColor = 'rgba(0,212,255,1)';
+      ctx.shadowBlur  = 20;
+      ctx.fill();
+      // inner dot
+      ctx.beginPath();
+      ctx.arc(clipRight, edgeY, 2.5, 0, Math.PI * 2);
+      ctx.fillStyle = '#00d4ff';
+      ctx.shadowBlur = 0;
+      ctx.fill();
+      ctx.restore();
     }
-  });
 
-  /* Tooltip interaction */
-  const tooltip   = document.getElementById('activityTooltip');
-  const ttDate    = document.getElementById('ttDate');
-  const ttTx      = document.getElementById('ttTx');
-  const ttStreak  = document.getElementById('ttStreak');
-
-  function showTooltip(e) {
-    const box = canvas.getBoundingClientRect();
-    const mouseX = (e.touches ? e.touches[0].clientX : e.clientX) - box.left;
-    let closest = 0, minDist = Infinity;
-    xs.forEach((x, i) => { const d = Math.abs(x - mouseX); if (d < minDist) { minDist = d; closest = i; } });
-    if (minDist > 40) { tooltip.classList.remove('vis'); return; }
-    const p = points[closest];
-    ttDate.textContent = p.date.toLocaleDateString('en-US', {month:'short', day:'numeric'});
-    ttTx.textContent = p.txs + ' transaction' + (p.txs !== 1 ? 's' : '');
-    ttStreak.textContent = p.isActive ? 'Streak Active' : 'Inactive';
-    ttStreak.className = 'an-tooltip-streak ' + (p.isActive ? 'active' : 'inactive');
-    tooltip.style.left = xs[closest] + 'px';
-    tooltip.style.top  = (ys[closest] - 72) + 'px';
-    tooltip.classList.add('vis');
+    /* X labels */
+    ctx.fillStyle = 'rgba(100,116,139,0.65)';
+    ctx.font = '9px "Plus Jakarta Sans"';
+    ctx.textAlign = 'center';
+    const step = Math.max(1, Math.floor(points.length / 7));
+    points.forEach((p, i) => {
+      if (i % step === 0 || i === points.length - 1) {
+        const label = view === 'week'
+          ? p.date.toLocaleDateString('en-US', {weekday:'short'})
+          : p.date.getDate().toString();
+        ctx.fillText(label, xs[i], H - 6);
+      }
+    });
   }
-  canvas.onmousemove = showTooltip;
-  canvas.ontouchmove = showTooltip;
-  canvas.onmouseleave = () => tooltip.classList.remove('vis');
+
+  if (animated) {
+    let startTime = null;
+    const duration = 1500;
+    function animate(ts) {
+      if (!startTime) startTime = ts;
+      const p = Math.min((ts - startTime) / duration, 1);
+      // easeInOutCubic
+      const ease = p < 0.5 ? 4*p*p*p : 1 - Math.pow(-2*p+2,3)/2;
+      render(ease);
+      if (p < 1) requestAnimationFrame(animate);
+      else setupChartTooltip(canvas, xs, ys, points);
+    }
+    requestAnimationFrame(animate);
+  } else {
+    render(1);
+    setupChartTooltip(canvas, xs, ys, points);
+  }
 }
 
-/* ── DRAW TIME DISTRIBUTION CHART ── */
-function drawTimeChart(distribution, peakH) {
+/* ── DRAW TIME CHART — animated line draw ── */
+function drawTimeChart(distribution, peakH, animated) {
+  if (animated === undefined) animated = false;
   const canvas = document.getElementById('timeChart');
   if (!canvas) return;
   const dpr = window.devicePixelRatio || 1;
@@ -2508,59 +2593,123 @@ function drawTimeChart(distribution, peakH) {
   const xs = distribution.map((_, i) => padL + (i / (hours - 1)) * (W - padL - padR));
   const ys = distribution.map(v => padT + (1 - v / maxVal) * (H - padT - padB));
 
-  ctx.clearRect(0, 0, W, H);
+  function render(clipProgress) {
+    ctx.clearRect(0, 0, W, H);
 
-  /* Grid */
-  ctx.strokeStyle = 'rgba(191,219,254,0.2)'; ctx.lineWidth = 1;
-  for (let i = 0; i <= 3; i++) {
-    const y = padT + (i / 3) * (H - padT - padB);
-    ctx.beginPath(); ctx.moveTo(padL, y); ctx.lineTo(W - padR, y); ctx.stroke();
+    /* Dashed grid */
+    ctx.setLineDash([3, 4]);
+    ctx.strokeStyle = 'rgba(191,219,254,0.15)'; ctx.lineWidth = 1;
+    for (let i = 0; i <= 3; i++) {
+      const y = padT + (i / 3) * (H - padT - padB);
+      ctx.beginPath(); ctx.moveTo(padL, y); ctx.lineTo(W - padR, y); ctx.stroke();
+    }
+    ctx.setLineDash([]);
+
+    const clipRight = padL + (W - padL - padR) * clipProgress;
+
+    ctx.save();
+    ctx.beginPath();
+    ctx.rect(0, 0, clipRight + 8, H);
+    ctx.clip();
+
+    /* Peak column highlight */
+    const peakX = xs[peakH];
+    if (peakX <= clipRight) {
+      const pkGrad = ctx.createRadialGradient(peakX, H/2, 0, peakX, H/2, 55);
+      pkGrad.addColorStop(0, 'rgba(0,212,255,0.09)'); pkGrad.addColorStop(1, 'transparent');
+      ctx.fillStyle = pkGrad;
+      ctx.fillRect(peakX - 55, padT, 110, H - padT - padB);
+    }
+
+    /* Area */
+    const aGrad = ctx.createLinearGradient(0, padT, 0, H - padB);
+    aGrad.addColorStop(0, 'rgba(0,212,255,0.22)');
+    aGrad.addColorStop(1, 'rgba(37,99,235,0)');
+    ctx.beginPath(); ctx.moveTo(xs[0], H - padB);
+    xs.forEach((x, i) => {
+      if (i === 0) ctx.lineTo(x, ys[i]);
+      else { const cpx = (xs[i-1]+x)/2; ctx.bezierCurveTo(cpx, ys[i-1], cpx, ys[i], x, ys[i]); }
+    });
+    ctx.lineTo(xs[hours-1], H - padB); ctx.closePath();
+    ctx.fillStyle = aGrad; ctx.fill();
+
+    /* Line */
+    ctx.shadowColor = 'rgba(0,212,255,0.38)'; ctx.shadowBlur = 8;
+    ctx.beginPath();
+    xs.forEach((x, i) => {
+      if (i === 0) ctx.moveTo(x, ys[i]);
+      else { const cpx = (xs[i-1]+x)/2; ctx.bezierCurveTo(cpx, ys[i-1], cpx, ys[i], x, ys[i]); }
+    });
+    ctx.strokeStyle = 'rgba(0,212,255,0.82)'; ctx.lineWidth = 2; ctx.stroke();
+    ctx.shadowBlur = 0;
+
+    ctx.restore();
+
+    /* Peak dot */
+    if (xs[peakH] <= clipRight + 5) {
+      ctx.beginPath(); ctx.arc(xs[peakH], ys[peakH], 5, 0, Math.PI * 2);
+      ctx.fillStyle = '#00d4ff';
+      ctx.shadowColor = 'rgba(0,212,255,0.9)'; ctx.shadowBlur = 16; ctx.fill(); ctx.shadowBlur = 0;
+      // inner
+      ctx.beginPath(); ctx.arc(xs[peakH], ys[peakH], 2.5, 0, Math.PI * 2);
+      ctx.fillStyle = '#fff'; ctx.fill();
+    }
+
+    /* Leading scanner dot */
+    if (clipProgress < 0.999) {
+      let edgeY = H / 2;
+      for (let i = 1; i < xs.length; i++) {
+        if (xs[i] >= clipRight) {
+          const t = (clipRight - xs[i-1]) / Math.max(xs[i] - xs[i-1], 0.001);
+          edgeY = ys[i-1] + (ys[i] - ys[i-1]) * Math.min(t, 1);
+          break;
+        }
+      }
+      ctx.beginPath();
+      ctx.arc(clipRight, edgeY, 4.5, 0, Math.PI * 2);
+      ctx.fillStyle = '#fff';
+      ctx.shadowColor = 'rgba(0,212,255,1)'; ctx.shadowBlur = 18; ctx.fill();
+      ctx.beginPath();
+      ctx.arc(clipRight, edgeY, 2, 0, Math.PI * 2);
+      ctx.fillStyle = '#00d4ff'; ctx.shadowBlur = 0; ctx.fill();
+    }
+
+    /* X labels */
+    ctx.fillStyle = 'rgba(100,116,139,0.65)';
+    ctx.font = '9px "Plus Jakarta Sans"'; ctx.textAlign = 'center';
+    [0, 6, 12, 18, 23].forEach(h => {
+      const label = h === 0 ? '12AM' : h < 12 ? h+'AM' : h === 12 ? '12PM' : (h-12)+'PM';
+      ctx.fillText(label, xs[h], H - 6);
+    });
   }
 
-  /* Peak highlight */
-  const peakX = xs[peakH];
-  const pkGrad = ctx.createRadialGradient(peakX, H / 2, 0, peakX, H / 2, 60);
-  pkGrad.addColorStop(0, 'rgba(0,212,255,0.1)'); pkGrad.addColorStop(1, 'transparent');
-  ctx.fillStyle = pkGrad;
-  ctx.fillRect(peakX - 60, padT, 120, H - padT - padB);
-
-  /* Area */
-  const aGrad = ctx.createLinearGradient(0, padT, 0, H - padB);
-  aGrad.addColorStop(0, 'rgba(0,212,255,0.25)');
-  aGrad.addColorStop(1, 'rgba(37,99,235,0)');
-  ctx.beginPath(); ctx.moveTo(xs[0], H - padB);
-  xs.forEach((x, i) => {
-    if (i === 0) ctx.lineTo(x, ys[i]);
-    else { const cpx = (xs[i-1]+x)/2; ctx.bezierCurveTo(cpx, ys[i-1], cpx, ys[i], x, ys[i]); }
-  });
-  ctx.lineTo(xs[hours-1], H - padB); ctx.closePath();
-  ctx.fillStyle = aGrad; ctx.fill();
-
-  /* Line */
-  ctx.shadowColor = 'rgba(0,212,255,0.4)'; ctx.shadowBlur = 6;
-  ctx.beginPath();
-  xs.forEach((x, i) => {
-    if (i === 0) ctx.moveTo(x, ys[i]);
-    else { const cpx = (xs[i-1]+x)/2; ctx.bezierCurveTo(cpx, ys[i-1], cpx, ys[i], x, ys[i]); }
-  });
-  ctx.strokeStyle = 'rgba(0,212,255,0.85)'; ctx.lineWidth = 2; ctx.stroke();
-  ctx.shadowBlur = 0;
-
-  /* Peak dot */
-  ctx.beginPath(); ctx.arc(xs[peakH], ys[peakH], 5, 0, Math.PI * 2);
-  ctx.fillStyle = '#00d4ff';
-  ctx.shadowColor = 'rgba(0,212,255,0.9)'; ctx.shadowBlur = 14; ctx.fill(); ctx.shadowBlur = 0;
-
-  /* X labels */
-  ctx.fillStyle = 'rgba(100,116,139,0.7)';
-  ctx.font = '9px "Plus Jakarta Sans"'; ctx.textAlign = 'center';
-  [0, 6, 12, 18, 23].forEach(h => {
-    const label = h === 0 ? '12AM' : h < 12 ? h+'AM' : h === 12 ? '12PM' : (h-12)+'PM';
-    ctx.fillText(label, xs[h], H - 6);
-  });
+  if (animated) {
+    let startTime = null;
+    const duration = 1300;
+    function animate(ts) {
+      if (!startTime) startTime = ts;
+      const p = Math.min((ts - startTime) / duration, 1);
+      const ease = p < 0.5 ? 4*p*p*p : 1 - Math.pow(-2*p+2,3)/2;
+      render(ease);
+      if (p < 1) requestAnimationFrame(animate);
+    }
+    requestAnimationFrame(animate);
+  } else {
+    render(1);
+  }
 }
 
-/* ── POPULATE ANALYTICS SECTION ── */
+/* ── dApp SVG ICONS ── */
+const DAPP_ICONS = {
+  swap:     `<svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M1 4.5h10M8.5 2l3 2.5-3 2.5"/><path d="M13 9.5H3m3 2.5-3-2.5 3-2.5"/></svg>`,
+  bridge:   `<svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M1 10 C1 6, 3.5 3, 7 3 C10.5 3, 13 6, 13 10"/><line x1="1" y1="10" x2="1" y2="13"/><line x1="13" y1="10" x2="13" y2="13"/><line x1="7" y1="3" x2="7" y2="6"/></svg>`,
+  nft:      `<svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="1" width="12" height="12" rx="2"/><circle cx="4.5" cy="4.5" r="1.5"/><path d="M1 10l3-3 2 2 3-4 4 5"/></svg>`,
+  faucet:   `<svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 1 C7 1, 3.5 5.5, 3.5 8.5a3.5 3.5 0 0 0 7 0C10.5 5.5, 7 1, 7 1z"/></svg>`,
+  contract: `<svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 1H3a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V5z"/><polyline points="9,1 9,5 13,5"/><line x1="4" y1="8" x2="10" y2="8"/><line x1="4" y1="11" x2="7" y2="11"/></svg>`,
+  grid:     `<svg viewBox="0 0 14 14" fill="currentColor"><rect x="1" y="1" width="5" height="5" rx="1" opacity="0.8"/><rect x="8" y="1" width="5" height="5" rx="1" opacity="0.8"/><rect x="1" y="8" width="5" height="5" rx="1" opacity="0.8"/><rect x="8" y="8" width="5" height="5" rx="1" opacity="0.8"/></svg>`,
+};
+
+/* ── POPULATE ANALYTICS ── */
 function populateAnalytics(txCount) {
   const d = generateAnalyticsData(txCount);
   analyticsData = d;
@@ -2593,49 +2742,63 @@ function populateAnalytics(txCount) {
     countUpElement('an-age-val', d.walletAgeDays, 'd', 1000);
   }
   animateCircle('circ-age', Math.min(d.walletAgeDays / 365, 1), 600);
-  document.getElementById('an-age-badge').textContent = 'Since ' + d.firstTxDate.toLocaleDateString('en-US', {month:'short', year:'2-digit'});
+  document.getElementById('an-age-badge').textContent =
+    'Since ' + d.firstTxDate.toLocaleDateString('en-US', {month:'short', year:'2-digit'});
 
-  /* Chart */
+  /* Charts — animated draw */
   setTimeout(() => {
-    drawActivityChart(d, 'week');
-    drawTimeChart(d.timeDistribution, d.timeDistribution.indexOf(Math.max(...d.timeDistribution)));
+    drawActivityChart(d, 'week', true);
+    drawTimeChart(
+      d.timeDistribution,
+      d.timeDistribution.indexOf(Math.max(...d.timeDistribution)),
+      true
+    );
   }, 200);
 
-  /* dApp rows */
+  /* dApp rows — with SVG icons, staggered bar animation */
   const dapps = [
-    { icon: '🔄', label: 'Swap Transactions',  val: d.swaps,      max: Math.max(d.swaps, 1) },
-    { icon: '🌉', label: 'Bridge Transactions', val: d.bridges,    max: Math.max(d.swaps, 1) },
-    { icon: '🖼️', label: 'NFT Interactions',   val: d.nftTx,      max: Math.max(d.swaps, 1) },
-    { icon: '💧', label: 'Faucet Claims',       val: d.faucet,     max: 30 },
-    { icon: '📝', label: 'Unique Contracts',    val: d.contracts,  max: 20 },
-    { icon: '🏗️', label: 'Total dApp Actions', val: d.totalDapps, max: 20 },
+    { icon: DAPP_ICONS.swap,     label: 'Swap Transactions',  val: d.swaps },
+    { icon: DAPP_ICONS.bridge,   label: 'Bridge Transactions', val: d.bridges },
+    { icon: DAPP_ICONS.nft,      label: 'NFT Interactions',   val: d.nftTx },
+    { icon: DAPP_ICONS.faucet,   label: 'Faucet Claims',       val: d.faucet },
+    { icon: DAPP_ICONS.contract, label: 'Unique Contracts',    val: d.contracts },
+    { icon: DAPP_ICONS.grid,     label: 'Total dApp Actions',  val: d.totalDapps },
   ];
   const maxBar = Math.max(...dapps.map(x => x.val), 1);
-  document.getElementById('an-dapp-rows').innerHTML = dapps.map(row => `
+  const dappContainer = document.getElementById('an-dapp-rows');
+  dappContainer.innerHTML = dapps.map((row, idx) => `
     <div class="an-dapp-row">
-      <span class="an-dapp-icon">${row.icon}</span>
+      <div class="an-dapp-icon" style="color:rgba(37,99,235,0.65)">${row.icon}</div>
       <span class="an-dapp-label">${row.label}</span>
       <div class="an-dapp-bar-wrap">
-        <div class="an-dapp-bar" style="width:${Math.round((row.val/maxBar)*100)}%"></div>
+        <div class="an-dapp-bar" id="dbar-${idx}"></div>
       </div>
       <span class="an-dapp-val">${fmt(row.val)}</span>
     </div>`).join('');
+
+  // Animate bars with stagger
+  dapps.forEach((row, idx) => {
+    setTimeout(() => {
+      const bar = document.getElementById('dbar-' + idx);
+      if (bar) bar.style.width = Math.round((row.val / maxBar) * 100) + '%';
+    }, 300 + idx * 80);
+  });
 
   /* Ranking */
   setTimeout(() => {
     countUpElement('rankScoreNum', d.overallScore, '', 1400);
     const rankCircle = document.getElementById('rankCircle');
     if (rankCircle) {
-      rankCircle.style.transition = 'stroke-dashoffset 1.6s cubic-bezier(0.16,1,0.3,1)';
+      rankCircle.style.transition = 'stroke-dashoffset 1.7s cubic-bezier(0.16,1,0.3,1)';
       rankCircle.style.strokeDashoffset = 314 - (314 * d.overallScore / 100);
     }
     document.getElementById('rankPercentile').textContent = d.percentile;
 
     setTimeout(() => {
-      document.getElementById('bar-activity').style.width = d.activityScore + '%';
-      document.getElementById('val-activity').textContent = d.activityScore;
-      document.getElementById('bar-defi').style.width = d.defiScore + '%';
-      document.getElementById('val-defi').textContent = d.defiScore;
+      document.getElementById('bar-activity').style.width  = d.activityScore + '%';
+      document.getElementById('val-activity').textContent  = d.activityScore;
+      document.getElementById('bar-defi').style.width      = d.defiScore + '%';
+      document.getElementById('val-defi').textContent      = d.defiScore;
       document.getElementById('bar-consistency').style.width = d.consistencyScore + '%';
       document.getElementById('val-consistency').textContent = d.consistencyScore;
     }, 400);
@@ -2644,23 +2807,24 @@ function populateAnalytics(txCount) {
   /* Peak time */
   document.getElementById('peakTime').textContent = d.peakLabel;
 
-  /* Micro tags */
-  document.getElementById('an-micro-row').innerHTML = [
-    { dot: '#00d4ff', label: 'First Transaction', val: d.firstTxDate.toLocaleDateString('en-US', {month:'short', day:'numeric', year:'numeric'}) },
-    { dot: '#22c55e', label: 'Last Activity',      val: d.lastTxDate.toLocaleDateString('en-US', {month:'short', day:'numeric'}) },
+  /* Micro tags — colored geometric dots, no emojis */
+  const microDots = [
+    { dot: '#00d4ff', label: 'First Transaction', val: d.firstTxDate.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}) },
+    { dot: '#22c55e', label: 'Last Activity',      val: d.lastTxDate.toLocaleDateString('en-US',{month:'short',day:'numeric'}) },
     { dot: '#2563eb', label: 'Avg Tx / Day',       val: d.avgTxPerDay },
     { dot: '#8b5cf6', label: 'Avg dApps / Week',   val: d.avgDappsPerWeek },
     { dot: '#f59e0b', label: 'Wallet Age',          val: d.walletAgeDays + ' days' },
     { dot: '#ec4899', label: 'Max Streak',          val: d.maxStreak + ' days' },
-  ].map(t => `
+  ];
+  document.getElementById('an-micro-row').innerHTML = microDots.map(t => `
     <div class="an-micro-tag">
-      <div class="an-micro-tag-dot" style="background:${t.dot};box-shadow:0 0 6px ${t.dot}80"></div>
+      <div class="an-micro-tag-dot" style="background:${t.dot};box-shadow:0 0 5px ${t.dot}70"></div>
       ${t.label}:&nbsp;<span class="an-micro-tag-val">${t.val}</span>
     </div>`).join('');
 
   /* Scroll to analytics */
   setTimeout(() => {
-    anSec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    anSec.scrollIntoView({ behavior:'smooth', block:'start' });
   }, 600);
 }
 
@@ -2670,7 +2834,7 @@ function switchChartView(view) {
   currentView = view;
   document.getElementById('toggle-week').classList.toggle('active', view === 'week');
   document.getElementById('toggle-month').classList.toggle('active', view === 'month');
-  drawActivityChart(analyticsData, view);
+  drawActivityChart(analyticsData, view, false);
 }
 
 /* ── MAIN CHECK ── */
@@ -2681,7 +2845,6 @@ async function checkDrop() {
   const rw      = document.getElementById('result-wrap');
   const btn     = document.getElementById('submitBtn');
 
-  // Hide analytics on new check
   const anSec = document.getElementById('analytics-section');
   anSec.classList.remove('visible');
 
@@ -2768,7 +2931,7 @@ async function checkDrop() {
               </div>
             </div>
             <div class="res-addr">
-              <span class="addr-pin"></span>
+              <span class="addr-pin">📍</span>
               <span class="addr-text" id="addrText">${wallet}</span>
               <div class="addr-eye" id="eyeIcon" onclick="toggleAddr('${wallet.replace(/'/g, "\\'")}')">
                 ${eyeOpenSVG()}
@@ -2780,8 +2943,6 @@ async function checkDrop() {
       </div>`;
 
     animateCount(result.alloc);
-
-    /* ── TRIGGER ANALYTICS after allocation render ── */
     setTimeout(() => populateAnalytics(txCount), 600);
   }
 
@@ -2791,10 +2952,11 @@ async function checkDrop() {
 function animateCount(target) {
   const el = document.getElementById('allocNum');
   if (!el) return;
-  let start = 0, dur = 1400;
+  let start = 0;
+  const dur = 1400;
   const step = ts => {
     if (!start) start = ts;
-    const p    = Math.min((ts - start) / dur, 1);
+    const p = Math.min((ts - start) / dur, 1);
     const ease = 1 - Math.pow(1 - p, 3);
     el.textContent = fmt(Math.floor(ease * target));
     if (p < 1) requestAnimationFrame(step);
@@ -2820,8 +2982,12 @@ document.getElementById('walletInput').addEventListener('keydown', e => {
 /* Redraw charts on resize */
 window.addEventListener('resize', () => {
   if (analyticsData) {
-    drawActivityChart(analyticsData, currentView);
-    drawTimeChart(analyticsData.timeDistribution, analyticsData.timeDistribution.indexOf(Math.max(...analyticsData.timeDistribution)));
+    drawActivityChart(analyticsData, currentView, false);
+    drawTimeChart(
+      analyticsData.timeDistribution,
+      analyticsData.timeDistribution.indexOf(Math.max(...analyticsData.timeDistribution)),
+      false
+    );
   }
 });
 </script>
