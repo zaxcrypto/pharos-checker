@@ -1747,7 +1747,6 @@ body {
   <div class="an-header">
     <div class="an-header-left">
       <div class="an-section-icon">
-        <!-- Bar chart icon -->
         <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
           <rect x="2" y="10" width="4" height="8" rx="1" fill="rgba(255,255,255,0.9)"/>
           <rect x="8" y="6" width="4" height="12" rx="1" fill="rgba(255,255,255,0.9)"/>
@@ -1767,8 +1766,6 @@ body {
 
   <!-- ROW 1: METRIC CARDS -->
   <div class="an-row1">
-
-    <!-- Transactions -->
     <div class="an-card an-metric-card" style="--accent:linear-gradient(180deg,#00d4ff,#0ea5e9)">
       <div class="an-circ-wrap">
         <svg class="an-circ" width="44" height="44" viewBox="0 0 44 44">
@@ -1783,7 +1780,6 @@ body {
         </svg>
       </div>
       <div class="an-metric-icon" style="--icon-bg:rgba(0,212,255,0.07);--icon-border:rgba(0,212,255,0.18)">
-        <!-- Lightning / zap -->
         <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style="color:rgba(0,180,220,0.9)">
           <path d="M9 1.5L3.5 9H8L7 14.5L13.5 7H9L9 1.5Z" fill="currentColor"/>
         </svg>
@@ -1793,7 +1789,6 @@ body {
       <div class="an-metric-badge an-badge-up" id="an-tx-badge">+0% vs avg</div>
     </div>
 
-    <!-- Active Days -->
     <div class="an-card an-metric-card" style="--accent:linear-gradient(180deg,#22c55e,#16a34a)">
       <div class="an-circ-wrap">
         <svg class="an-circ" width="44" height="44" viewBox="0 0 44 44">
@@ -1808,7 +1803,6 @@ body {
         </svg>
       </div>
       <div class="an-metric-icon" style="--icon-bg:rgba(34,197,94,0.07);--icon-border:rgba(34,197,94,0.18)">
-        <!-- Calendar -->
         <svg viewBox="0 0 16 16" fill="none" stroke="rgba(22,163,74,0.9)" stroke-width="1.4" stroke-linecap="round" xmlns="http://www.w3.org/2000/svg">
           <rect x="1.5" y="3" width="13" height="11.5" rx="1.5"/>
           <line x1="1.5" y1="7" x2="14.5" y2="7"/>
@@ -1824,7 +1818,6 @@ body {
       <div class="an-metric-badge an-badge-info" id="an-days-badge">—</div>
     </div>
 
-    <!-- Streak -->
     <div class="an-card an-metric-card" style="--accent:linear-gradient(180deg,#f59e0b,#d97706)">
       <div class="an-circ-wrap">
         <svg class="an-circ" width="44" height="44" viewBox="0 0 44 44">
@@ -1839,7 +1832,6 @@ body {
         </svg>
       </div>
       <div class="an-metric-icon" style="--icon-bg:rgba(245,158,11,0.07);--icon-border:rgba(245,158,11,0.18)">
-        <!-- Trending up / streak -->
         <svg viewBox="0 0 16 16" fill="none" stroke="rgba(180,83,9,0.9)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
           <polyline points="1,12 5,7 8,10 12,4 15,6"/>
           <polyline points="12,4 15,4 15,7"/>
@@ -1850,7 +1842,6 @@ body {
       <div class="an-metric-badge an-badge-warn">Best streak</div>
     </div>
 
-    <!-- Wallet Age -->
     <div class="an-card an-metric-card" style="--accent:linear-gradient(180deg,#8b5cf6,#6d28d9)">
       <div class="an-circ-wrap">
         <svg class="an-circ" width="44" height="44" viewBox="0 0 44 44">
@@ -1865,7 +1856,6 @@ body {
         </svg>
       </div>
       <div class="an-metric-icon" style="--icon-bg:rgba(139,92,246,0.07);--icon-border:rgba(139,92,246,0.18)">
-        <!-- Clock -->
         <svg viewBox="0 0 16 16" fill="none" stroke="rgba(109,40,217,0.9)" stroke-width="1.4" stroke-linecap="round" xmlns="http://www.w3.org/2000/svg">
           <circle cx="8" cy="8" r="6.5"/>
           <polyline points="8,4.5 8,8 10.5,10"/>
@@ -1903,11 +1893,9 @@ body {
 
   <!-- ROW 3: INSIGHTS + RANKING -->
   <div class="an-row3">
-
     <div class="an-card an-insight-card">
       <div class="an-card-title">
         <div class="an-card-title-icon">
-          <!-- Scan / search -->
           <svg viewBox="0 0 14 14" fill="none" stroke="rgba(37,99,235,0.75)" stroke-width="1.4" stroke-linecap="round" xmlns="http://www.w3.org/2000/svg">
             <circle cx="5.5" cy="5.5" r="4"/>
             <line x1="9" y1="9" x2="13" y2="13"/>
@@ -1921,7 +1909,6 @@ body {
     <div class="an-card an-rank-card">
       <div class="an-card-title">
         <div class="an-card-title-icon">
-          <!-- Trophy / star -->
           <svg viewBox="0 0 14 14" fill="none" stroke="rgba(37,99,235,0.75)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
             <path d="M7 1l1.5 3 3.5.5-2.5 2.5.5 3.5L7 9l-3 1.5.5-3.5L2 4.5l3.5-.5z"/>
           </svg>
@@ -2144,16 +2131,86 @@ async function rpc(method, params) {
   return d.result;
 }
 
-function getAllocation(tx) {
-  if (tx < 10) return null;
-  if (tx < 100) {
-    const alloc = Math.floor(10000 + ((tx-10)/90)*5000);
-    return { alloc, tier:'Explorer', label:'Explorer' };
+/* ══════════════════════════════════════════════════════
+   DETERMINISTIC ALLOCATION ENGINE
+   Same wallet → same number forever (no cookies/storage)
+   Seed derived purely from wallet address bytes via FNV-1a
+══════════════════════════════════════════════════════ */
+
+function walletToSeed(wallet) {
+  // FNV-1a 32-bit hash of the lowercase wallet string
+  let h = 2166136261 >>> 0;
+  const lower = wallet.toLowerCase();
+  for (let i = 0; i < lower.length; i++) {
+    h ^= lower.charCodeAt(i);
+    h = Math.imul(h, 16777619) >>> 0;
   }
-  const alloc = Math.min(15000 + (tx-100)*50, 80000);
-  let tier='Captain', label='Captain';
-  if (tx >= 500) { tier='Lighthouse'; label='Lighthouse'; }
-  return { alloc, tier, label };
+  return h;
+}
+
+function seededRng(seed, index) {
+  // Wang hash mix: deterministic float [0,1) from seed + index
+  let s = (seed ^ (Math.imul(index, 2654435761) >>> 0)) >>> 0;
+  s = (Math.imul(s ^ (s >>> 16), 0x45d9f3b) >>> 0);
+  s = (Math.imul(s ^ (s >>> 16), 0x45d9f3b) >>> 0);
+  s = (s ^ (s >>> 16)) >>> 0;
+  return s / 4294967296;
+}
+
+function getAllocation(tx, wallet) {
+  if (tx < 10) return null;
+
+  const seed = walletToSeed(wallet || '0x0000000000000000000000000000000000000000');
+  const rng  = (i) => seededRng(seed, i);
+
+  /* ── BASE TIER (tx-count bracket) ── */
+  let base, tier;
+  if      (tx < 50)   { base = 200   + rng(0) * 600;   tier = 'Explorer'; }
+  else if (tx < 100)  { base = 800   + rng(0) * 1200;  tier = 'User'; }
+  else if (tx < 300)  { base = 2000  + rng(0) * 4000;  tier = 'Trader'; }
+  else if (tx < 500)  { base = 6000  + rng(0) * 9000;  tier = 'Captain'; }
+  else if (tx < 1000) { base = 15000 + rng(0) * 20000; tier = 'Whale'; }
+  else                { base = 35000 + rng(0) * 45000; tier = 'Elite Whale'; }
+
+  /* ── DERIVED ACTIVITY METRICS (wallet-seeded, consistent with analytics) ── */
+  const activeDays      = Math.min(Math.floor(tx * (0.4 + rng(1) * 0.3)), 315);
+  const streakDays      = Math.min(Math.floor(activeDays * (0.3 + rng(2) * 0.2)), 90);
+  const swapCount       = Math.floor(tx * (0.10 + rng(3) * 0.15));
+  const bridgeCount     = Math.floor(tx * (0.02 + rng(4) * 0.05));
+  const nftInteractions = Math.floor(tx * (0.05 + rng(5) * 0.10));
+  const uniqueContracts = Math.floor(3  + rng(6) * 12);
+  const faucetClaims    = Math.floor(5  + rng(7) * 20);
+
+  /* ── MULTIPLIERS ── */
+  const activityMultiplier = 1 + (activeDays      / 200);
+  const streakMultiplier   = 1 + (streakDays      / 100);
+  const defiMultiplier     = 1 + (swapCount * 0.02 + bridgeCount * 0.04 + nftInteractions * 0.015);
+  const contractMultiplier = 1 + (uniqueContracts  * 0.01);
+  const faucetPenalty      = Math.max(0.7, 1 - (faucetClaims * 0.01));
+
+  let final = base * activityMultiplier * streakMultiplier * defiMultiplier * contractMultiplier * faucetPenalty;
+
+  /* ── BONUS BOOSTS ── */
+  const streakBonus   = streakDays > 30;
+  const activityBonus = activeDays > 100;
+  const defiBonus     = swapCount  > 50;
+  if (streakBonus)   final *= 1.15;
+  if (activityBonus) final *= 1.20;
+  if (defiBonus)     final *= 1.25;
+
+  /* ── CONTROLLED VARIANCE (wallet-seeded — never changes) ── */
+  const variancePct = 0.03 + rng(8) * 0.09;   // 3–12%
+  const variance    = final * variancePct;
+  final = rng(9) > 0.5 ? final + variance : final - variance;
+
+  /* ── SMART ROUNDING — no clean endings ── */
+  final = Math.round(final);
+  const ending = final % 1000;
+  if (ending === 0 || ending === 500 || ending === 100) {
+    final += Math.floor(17 + rng(10) * 76);
+  }
+
+  return { alloc: final, tier, label: tier };
 }
 
 function fmt(n) { return n.toLocaleString('en-US'); }
@@ -2401,7 +2458,7 @@ function setupChartTooltip(canvas, xs, ys, points) {
   canvas.onmouseleave = () => tooltip.classList.remove('vis');
 }
 
-/* ── DRAW ACTIVITY CHART — animated line draw from left to right ── */
+/* ── DRAW ACTIVITY CHART ── */
 function drawActivityChart(data, view, animated) {
   if (animated === undefined) animated = false;
   const canvas = document.getElementById('activityChart');
@@ -2429,7 +2486,6 @@ function drawActivityChart(data, view, animated) {
   function render(clipProgress) {
     ctx.clearRect(0, 0, W, H);
 
-    /* Y-axis dashed grid */
     ctx.setLineDash([3, 4]);
     ctx.strokeStyle = 'rgba(191,219,254,0.18)';
     ctx.lineWidth = 1;
@@ -2439,7 +2495,6 @@ function drawActivityChart(data, view, animated) {
     }
     ctx.setLineDash([]);
 
-    /* Y labels */
     ctx.fillStyle = 'rgba(100,116,139,0.55)';
     ctx.font = '9px "Plus Jakarta Sans"';
     ctx.textAlign = 'right';
@@ -2448,7 +2503,6 @@ function drawActivityChart(data, view, animated) {
       ctx.fillText(fmt(Math.round(maxTx * (1 - i / 4))), padL - 5, y + 3);
     }
 
-    /* Clip rect for progressive reveal */
     const clipRight = padL + (W - padL - padR) * clipProgress;
 
     ctx.save();
@@ -2456,7 +2510,6 @@ function drawActivityChart(data, view, animated) {
     ctx.rect(0, 0, clipRight + 8, H);
     ctx.clip();
 
-    /* Gradient fill */
     const grad = ctx.createLinearGradient(0, padT, 0, H - padB);
     grad.addColorStop(0,   'rgba(37,99,235,0.16)');
     grad.addColorStop(0.55,'rgba(0,212,255,0.05)');
@@ -2476,7 +2529,6 @@ function drawActivityChart(data, view, animated) {
     ctx.fillStyle = grad;
     ctx.fill();
 
-    /* Glow line */
     const lineGrad = ctx.createLinearGradient(padL, 0, W - padR, 0);
     lineGrad.addColorStop(0,   '#00d4ff');
     lineGrad.addColorStop(0.5, '#2563eb');
@@ -2499,7 +2551,6 @@ function drawActivityChart(data, view, animated) {
 
     ctx.restore();
 
-    /* Dots — only for revealed portion */
     points.forEach((p, i) => {
       if (xs[i] > clipRight + 5) return;
       ctx.beginPath();
@@ -2510,9 +2561,7 @@ function drawActivityChart(data, view, animated) {
       ctx.shadowBlur = 0;
     });
 
-    /* Leading scanner dot */
     if (clipProgress < 0.999) {
-      // Find the y-position at the clip edge via linear interpolation on segments
       let edgeY = H / 2;
       for (let i = 1; i < xs.length; i++) {
         if (xs[i] >= clipRight) {
@@ -2528,7 +2577,6 @@ function drawActivityChart(data, view, animated) {
       ctx.shadowColor = 'rgba(0,212,255,1)';
       ctx.shadowBlur  = 20;
       ctx.fill();
-      // inner dot
       ctx.beginPath();
       ctx.arc(clipRight, edgeY, 2.5, 0, Math.PI * 2);
       ctx.fillStyle = '#00d4ff';
@@ -2537,7 +2585,6 @@ function drawActivityChart(data, view, animated) {
       ctx.restore();
     }
 
-    /* X labels */
     ctx.fillStyle = 'rgba(100,116,139,0.65)';
     ctx.font = '9px "Plus Jakarta Sans"';
     ctx.textAlign = 'center';
@@ -2558,7 +2605,6 @@ function drawActivityChart(data, view, animated) {
     function animate(ts) {
       if (!startTime) startTime = ts;
       const p = Math.min((ts - startTime) / duration, 1);
-      // easeInOutCubic
       const ease = p < 0.5 ? 4*p*p*p : 1 - Math.pow(-2*p+2,3)/2;
       render(ease);
       if (p < 1) requestAnimationFrame(animate);
@@ -2571,7 +2617,7 @@ function drawActivityChart(data, view, animated) {
   }
 }
 
-/* ── DRAW TIME CHART — animated line draw ── */
+/* ── DRAW TIME CHART ── */
 function drawTimeChart(distribution, peakH, animated) {
   if (animated === undefined) animated = false;
   const canvas = document.getElementById('timeChart');
@@ -2596,7 +2642,6 @@ function drawTimeChart(distribution, peakH, animated) {
   function render(clipProgress) {
     ctx.clearRect(0, 0, W, H);
 
-    /* Dashed grid */
     ctx.setLineDash([3, 4]);
     ctx.strokeStyle = 'rgba(191,219,254,0.15)'; ctx.lineWidth = 1;
     for (let i = 0; i <= 3; i++) {
@@ -2612,7 +2657,6 @@ function drawTimeChart(distribution, peakH, animated) {
     ctx.rect(0, 0, clipRight + 8, H);
     ctx.clip();
 
-    /* Peak column highlight */
     const peakX = xs[peakH];
     if (peakX <= clipRight) {
       const pkGrad = ctx.createRadialGradient(peakX, H/2, 0, peakX, H/2, 55);
@@ -2621,7 +2665,6 @@ function drawTimeChart(distribution, peakH, animated) {
       ctx.fillRect(peakX - 55, padT, 110, H - padT - padB);
     }
 
-    /* Area */
     const aGrad = ctx.createLinearGradient(0, padT, 0, H - padB);
     aGrad.addColorStop(0, 'rgba(0,212,255,0.22)');
     aGrad.addColorStop(1, 'rgba(37,99,235,0)');
@@ -2633,7 +2676,6 @@ function drawTimeChart(distribution, peakH, animated) {
     ctx.lineTo(xs[hours-1], H - padB); ctx.closePath();
     ctx.fillStyle = aGrad; ctx.fill();
 
-    /* Line */
     ctx.shadowColor = 'rgba(0,212,255,0.38)'; ctx.shadowBlur = 8;
     ctx.beginPath();
     xs.forEach((x, i) => {
@@ -2645,17 +2687,14 @@ function drawTimeChart(distribution, peakH, animated) {
 
     ctx.restore();
 
-    /* Peak dot */
     if (xs[peakH] <= clipRight + 5) {
       ctx.beginPath(); ctx.arc(xs[peakH], ys[peakH], 5, 0, Math.PI * 2);
       ctx.fillStyle = '#00d4ff';
       ctx.shadowColor = 'rgba(0,212,255,0.9)'; ctx.shadowBlur = 16; ctx.fill(); ctx.shadowBlur = 0;
-      // inner
       ctx.beginPath(); ctx.arc(xs[peakH], ys[peakH], 2.5, 0, Math.PI * 2);
       ctx.fillStyle = '#fff'; ctx.fill();
     }
 
-    /* Leading scanner dot */
     if (clipProgress < 0.999) {
       let edgeY = H / 2;
       for (let i = 1; i < xs.length; i++) {
@@ -2674,7 +2713,6 @@ function drawTimeChart(distribution, peakH, animated) {
       ctx.fillStyle = '#00d4ff'; ctx.shadowBlur = 0; ctx.fill();
     }
 
-    /* X labels */
     ctx.fillStyle = 'rgba(100,116,139,0.65)';
     ctx.font = '9px "Plus Jakarta Sans"'; ctx.textAlign = 'center';
     [0, 6, 12, 18, 23].forEach(h => {
@@ -2717,24 +2755,20 @@ function populateAnalytics(txCount) {
   const anSec = document.getElementById('analytics-section');
   anSec.classList.add('visible');
 
-  /* Card 1: Transactions */
   countUpElement('an-tx-val', d.txCount, '', 1000);
   const txPct = Math.min((d.txCount / 500) * 100, 100);
   animateCircle('circ-tx', txPct / 100, 300);
   const vsAvg = Math.round((d.txCount / 150 - 1) * 100);
   document.getElementById('an-tx-badge').textContent = (vsAvg >= 0 ? '+' : '') + vsAvg + '% vs avg';
 
-  /* Card 2: Active Days */
   countUpElement('an-days-val', d.activeDays, '', 1000);
   animateCircle('circ-days', d.activeDays / 315, 400);
   const consistency = Math.round((d.activeDays / Math.max(d.walletAgeDays, 1)) * 100);
   document.getElementById('an-days-badge').textContent = consistency + '% consistency';
 
-  /* Card 3: Streak */
   countUpElement('an-streak-val', d.maxStreak, 'd', 1000);
   animateCircle('circ-streak', d.maxStreak / 90, 500);
 
-  /* Card 4: Age */
   const ageMonths = Math.floor(d.walletAgeDays / 30);
   if (ageMonths >= 1) {
     document.getElementById('an-age-val').textContent = ageMonths + 'mo';
@@ -2745,7 +2779,6 @@ function populateAnalytics(txCount) {
   document.getElementById('an-age-badge').textContent =
     'Since ' + d.firstTxDate.toLocaleDateString('en-US', {month:'short', year:'2-digit'});
 
-  /* Charts — animated draw */
   setTimeout(() => {
     drawActivityChart(d, 'week', true);
     drawTimeChart(
@@ -2755,7 +2788,6 @@ function populateAnalytics(txCount) {
     );
   }, 200);
 
-  /* dApp rows — with SVG icons, staggered bar animation */
   const dapps = [
     { icon: DAPP_ICONS.swap,     label: 'Swap Transactions',  val: d.swaps },
     { icon: DAPP_ICONS.bridge,   label: 'Bridge Transactions', val: d.bridges },
@@ -2776,7 +2808,6 @@ function populateAnalytics(txCount) {
       <span class="an-dapp-val">${fmt(row.val)}</span>
     </div>`).join('');
 
-  // Animate bars with stagger
   dapps.forEach((row, idx) => {
     setTimeout(() => {
       const bar = document.getElementById('dbar-' + idx);
@@ -2784,7 +2815,6 @@ function populateAnalytics(txCount) {
     }, 300 + idx * 80);
   });
 
-  /* Ranking */
   setTimeout(() => {
     countUpElement('rankScoreNum', d.overallScore, '', 1400);
     const rankCircle = document.getElementById('rankCircle');
@@ -2804,10 +2834,8 @@ function populateAnalytics(txCount) {
     }, 400);
   }, 300);
 
-  /* Peak time */
   document.getElementById('peakTime').textContent = d.peakLabel;
 
-  /* Micro tags — colored geometric dots, no emojis */
   const microDots = [
     { dot: '#00d4ff', label: 'First Transaction', val: d.firstTxDate.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}) },
     { dot: '#22c55e', label: 'Last Activity',      val: d.lastTxDate.toLocaleDateString('en-US',{month:'short',day:'numeric'}) },
@@ -2822,7 +2850,6 @@ function populateAnalytics(txCount) {
       ${t.label}:&nbsp;<span class="an-micro-tag-val">${t.val}</span>
     </div>`).join('');
 
-  /* Scroll to analytics */
   setTimeout(() => {
     anSec.scrollIntoView({ behavior:'smooth', block:'start' });
   }, 600);
@@ -2874,7 +2901,8 @@ async function checkDrop() {
     return;
   }
 
-  const result = getAllocation(txCount);
+  /* ── UPDATED CALL: pass wallet for deterministic seed ── */
+  const result = getAllocation(txCount, wallet);
 
   if (!result) {
     rw.innerHTML = `
